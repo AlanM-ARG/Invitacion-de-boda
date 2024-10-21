@@ -510,21 +510,6 @@
         font-size: 4vw;
     }
 
-    .heading-4-copy {
-        box-sizing: border-box;
-        color: #4e6350;
-        word-break: normal;
-        margin-top: 5%;
-        font-family: Vollkorn, serif;
-        font-size: 7vw;
-        font-weight: 700;
-        line-height: 100%;
-        text-decoration: none;
-        display: block;
-        position: static;
-        inset: 0% 0% auto;
-    }
-
     .text-block-5 {
         color: #90a78b;
         height: auto;
@@ -589,6 +574,17 @@
         margin-top: 0%;
     }
 
+    .comilla1 {
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 0%;
+    }
+    .comilla2 {
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 0%;
+    }
+
     .image-4 {
         z-index: 1;
         vertical-align: baseline;
@@ -608,16 +604,16 @@
 
     .heading-4-copy {
         box-sizing: border-box;
-        color: #fff;
+        color: #212121;
         text-align: center;
         word-break: normal;
-        background-color: #4e6350;
         justify-content: center;
         align-items: center;
         margin-top: 5%;
+        /* font-family: Exo, sans-serif; */
         font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
         font-size: 7vw;
-        font-weight: 700;
+        font-weight: 900;
         line-height: 100%;
         display: block;
         position: relative;
@@ -648,8 +644,89 @@
     .description {
         text-align: center;
         font-family: Exo, sans-serif;
-        font-weight: 700;
+        font-weight: 400;
+        font-size: 4vw;
+        margin-top: 8%;
     }
+
+    .event-date {
+        font-size: 7vw;
+        font-family: Oswald, sans-serif;
+        color: #333; /* Cambia este color según tu diseño */
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        font-weight: 600;
+        margin-top: 8%;
+      }
+      
+      .date {
+        font-size: 7vw;
+        width: 18vw; /* Resalta la fecha */
+      }
+      
+      .time {
+        font-size: 7vw;
+        width: 18vw; /* O puedes cambiar el estilo si prefieres */
+      }
+
+/* From Uiverse.io by Creatlydev */ 
+.button1 {
+    line-height: 1;
+    text-decoration: none;
+    display: inline-flex;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: #90a78b;
+    color: #fff;
+    border-radius: 10rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    padding-left: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.3s;
+  }
+  
+  .button__icon-wrapper {
+    flex-shrink: 0;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    color: #90a78b;
+    background-color: #fff;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  
+  .button1:hover {
+    background-color: #4e6350;
+  }
+  
+  .button1:hover .button__icon-wrapper {
+    color: #4e6350;
+  }
+  
+  .button__icon-svg--copy {
+    position: absolute;
+    transform: translate(-150%, 150%);
+  }
+  
+  .button1:hover .button__icon-svg:first-child {
+    transition: transform 0.3s ease-in-out;
+    transform: translate(150%, -150%);
+  }
+  
+  .button1:hover .button__icon-svg--copy {
+    transition: transform 0.3s ease-in-out 0.1s;
+    transform: translate(0);
+  }
+  
 
     .subtitulo {
         text-align: center;
