@@ -8,6 +8,10 @@
     border: none;
 }
 
+html {
+    color-scheme: light !important; /* Fuerza el esquema de color claro */
+  }
+
 .w-layout-blockcontainer {
     max-width: 940px;
     margin-left: auto;
