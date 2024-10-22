@@ -3,13 +3,27 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            message: 'Hello Vue!'
+            message: 'Hello Vue!',
+            titulo: 'Reproductor de Música con Vue.js',
+            currentTime: 0,
+            duration: 0,
+            isPlaying: false,
+            audio: null
         }
     },
     created() {
 
     },
     methods: {
+        togglePlayPause() {
+            // Alternar entre reproducir y pausar
+            if (this.isPlaying) {
+                this.audio.pause();
+            } else {
+                this.audio.play();
+            }
+            this.isPlaying = !this.isPlaying;
+        },
         loadData() {
             Swal.fire({
                 html: `
@@ -63,5 +77,24 @@ createApp({
             </div>
   `     });
         }
+    },
+    mounted() {
+        // Acceder al elemento de audio
+        this.audio = this.$refs.audio;
+
+        // Verificar si el elemento de audio está disponible
+        if (this.audio) {
+            // Actualizar la duración y el tiempo actual del audio
+            this.audio.onloadedmetadata = () => {
+                this.duration = this.audio.duration;
+            };
+            this.audio.ontimeupdate = () => {
+                this.currentTime = this.audio.currentTime;
+            };
+            // Detectar cuándo termina el audio para restablecer el estado
+            this.audio.onended = () => {
+                this.isPlaying = false;
+            };
+        };
     }
 }).mount('#app')

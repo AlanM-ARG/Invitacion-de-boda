@@ -24,8 +24,13 @@
         espalda
         con espalda y vencen; mejor todavía si son tres, porque una cuerda triple no se corta
         fácilmente.<br>Eclesiastés 4:12 </h5>
-        <img src="/images/boton-de-play.png" loading="lazy" width="60" alt=""
-        class="image-4">
+        <audio ref="audio">
+          <source src="./Barak_-_Acepta_CeeNaija.com_.mp3" type="audio/mp3">
+          Tu navegador no soporta el elemento de audio.
+      </audio>
+      <img :src="isPlaying ? './images/boton-de-pausa.png' : './images/boton-de-play.png'" 
+      @click="togglePlayPause"
+      alt="Botón Play/Pausa" width="60" alt="" class="image-4">
       <div class="w-layout-hflex comilla2"><img src="/images/cotizacion-1.png" loading="lazy" width="19" alt=""
           class="image-3"></div>
       <div class="w-layout-hflex flex-block">
@@ -33,6 +38,10 @@
                 data-animation-type="lottie" data-src="/images/6702186dc832b5a7d9025350_a24abbbef0e7474ebb9006f5c713ee2f.json" data-loop="1"
                 data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg"
                 data-default-duration="2" data-duration="0"></div> -->
+      </div>
+      <div class="w-layout-hflex flex-block-2">
+        <img src="./images/separador.png" alt="" srcset="" width="300
+      " style="margin-top: 10%;">
       </div>
       <div class="text-block-5">Próximamente...</div>
       <h6 id="timer" class="heading-3">00:00:00:00</h6>
@@ -43,12 +52,11 @@
         <div id="w-node-_1b6b24cc-daf9-e5fb-fce0-09fe7afd26c5-21fc1c84" class="text-block-4">Segundos</div>
       </div>
     </div>
-<!--     <div class="w-layout-hflex flex-block-2">
+    <div class="w-layout-hflex flex-block-2">
       <img src="./images/separador.png" alt="" srcset="" width="300
     " style="margin-top: 10%;">
-    </div> -->
-    <h4 class="heading-4" >Itinerario</h4>
-    <div class="w-layout-blockcontainer container-3 w-container">
+    </div>
+    <div class="w-layout-blockcontainer container-3 w-container" style="margin-top: 15%;">
       <div class="w-layout-hflex flex-block-2">
         <img class="anillos" src="./images/anillos-de-boda.png" alt="" srcset="" width="75">
       </div>
@@ -58,7 +66,7 @@
 
       <div class="event-date"><span class="date">6 DIC</span>|<span class="time">10hs</span>
       </div>
-      <div class="w-layout-hflex flex-block-2">
+      <!--       <div class="w-layout-hflex flex-block-2">
         <button href="#" class="button1" style="--clr: #7808d0">
           <span class="button__icon-wrapper">
             <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
@@ -76,31 +84,36 @@
           </span>
           Agendar la Fecha
         </button>
-      </div>
+      </div> -->
       <!-- <div class="text-block-6">Lugar</div> -->
       <h5 class="place">Registro Civil Florencio Varela</h5>
       <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center;">
-        <img src="./images/marcador-de-posicion.png" alt="" width="20">
-        <h5 class="description m-0" style="text-decoration: underline;">Bartolomé Mitre 253</h5>
+        <a href="https://maps.app.goo.gl/VMyNBWZZdjiaBsuj7" >
+          <img src="./images/marcador-de-posicion.png" alt="" width="20"><span class="description m-0"
+          style="text-decoration: underline; color: #000;">Bartolomé Mitre 253</span></a>
       </div>
       <div class="w-layout-hflex flex-block-2">
-        <button href="#" class="button1" style="--clr: #7808d0">
-          <span class="button__icon-wrapper">
-            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
+        <a href="https://maps.app.goo.gl/VMyNBWZZdjiaBsuj7">
+          <button class="button1" style="--clr: #7808d0">
+            <span class="button__icon-wrapper">
+              <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg"
+                width="10">
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"></path>
+              </svg>
 
-            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-              class="button__icon-svg button__icon-svg--copy">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
-          </span>
-          ¿Como Llegar?
-        </button>
+              <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
+                class="button__icon-svg button__icon-svg--copy">
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"></path>
+              </svg>
+            </span>
+            ¿Como Llegar?
+          </button>
+        </a>
+
       </div>
     </div>
     <div class="w-layout-hflex flex-block-2">
@@ -115,7 +128,7 @@
       <!-- <div class="fecha">Fecha</div> -->
       <div class="event-date"><span class="date">7 DIC</span>|<span class="time">12hs</span>
       </div>
-      <div class="w-layout-hflex flex-block-2">
+      <!--       <div class="w-layout-hflex flex-block-2">
         <button href="#" class="button1" style="--clr: #7808d0">
           <span class="button__icon-wrapper">
             <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
@@ -133,14 +146,16 @@
           </span>
           Agendar la Fecha
         </button>
-      </div>
+      </div> -->
       <h5 class="place">Campo de Amancay</h5>
       <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center;">
-        <img src="./images/marcador-de-posicion.png" alt="" width="20">
-        <h5 class="description m-0" style="text-decoration: underline;">Calle 1136A N° 2441</h5>
+        <a href="https://maps.app.goo.gl/yoJUmSbaEtnwBVfJA" >
+          <img src="./images/marcador-de-posicion.png" alt="" width="20"><span class="description m-0"
+          style="text-decoration: underline; color: #000;">Calle 1136A N° 2441</span></a>
       </div>
       <div class="w-layout-hflex flex-block-2">
-        <button href="#" class="button1" style="--clr: #7808d0">
+        <a href="https://maps.app.goo.gl/yoJUmSbaEtnwBVfJA">
+        <button class="button1" style="--clr: #7808d0">
           <span class="button__icon-wrapper">
             <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
               <path
@@ -157,6 +172,7 @@
           </span>
           ¿Como Llegar?
         </button>
+      </a>
       </div>
     </div>
     <div class="w-layout-hflex flex-block-2">
@@ -166,9 +182,8 @@
     <div class="w-layout-blockcontainer container-3 w-container">
       <h4 class="heading-4">Confirmar Asistencia</h4>
       <h5 class="description">¿Nos acompañas en este día tan especial?</h5>
-      <div class="w-layout-hflex qr"><img src="/images/lista-de-verificacion.png" loading="lazy" width="70"
-          sizes="70px" alt=""
-          srcset="/images/lista-de-verificacion-p-500.png 500w, /images/lista-de-verificacion.png 512w">
+      <div class="w-layout-hflex qr"><img src="/images/lista-de-verificacion.png" loading="lazy" width="70" sizes="70px"
+          alt="" srcset="/images/lista-de-verificacion-p-500.png 500w, /images/lista-de-verificacion.png 512w">
       </div>
       <div class="w-layout-hflex flex-block-2">
         <button href="#" class="button1" style="--clr: #7808d0">
@@ -196,14 +211,14 @@
     </div>
     <div class="w-layout-blockcontainer container-3 w-container">
       <h4 class="heading-4">Dress Code</h4>
-        <div class="w-layout-hflex flex-block-2"><img src="/images/vestido-de-novia.png" loading="lazy" width="90"
-            alt=""></div>
-        <h5 class="place">Vestimenta Elegante</h5>
+      <div class="w-layout-hflex flex-block-2"><img src="/images/vestido-de-novia.png" loading="lazy" width="90" alt="">
       </div>
-      <div class="w-layout-hflex flex-block-2">
-        <img src="./images/separador.png" alt="" srcset="" width="300
+      <h5 class="place">Vestimenta Elegante</h5>
+    </div>
+    <div class="w-layout-hflex flex-block-2">
+      <img src="./images/separador.png" alt="" srcset="" width="300
       " style="margin-top: 15%;">
-      </div>
+    </div>
     <div class="w-layout-blockcontainer container-3 w-container">
       <!-- <div class="fecha"></div> -->
       <h4 class="heading-4">Música</h4>
@@ -231,91 +246,94 @@
       </div>
 
 
-        <div class="w-layout-blockcontainer container-3 w-container">
-          <div class="w-layout-hflex flex-block-2">
-            <img src="./images/separador.png" alt="" srcset="" width="300
+      <div class="w-layout-blockcontainer container-3 w-container">
+        <div class="w-layout-hflex flex-block-2">
+          <img src="./images/separador.png" alt="" srcset="" width="300
           " style="margin-top: 15%;">
-          </div>
-          <h4 class="heading-4">Información Importante</h4>
-          <div class="w-layout-hflex flex-block-2">
-            <button href="#" class="button1" style="--clr: #7808d0">
-              <span class="button__icon-wrapper">
-                <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-                  <path
-                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                    fill="currentColor"></path>
-                </svg>
-    
-                <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-                  class="button__icon-svg button__icon-svg--copy">
-                  <path
-                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                    fill="currentColor"></path>
-                </svg>
-              </span>
-              Ver mas
-            </button>
-          </div>
         </div>
+        <h4 class="heading-4">Información Importante</h4>
         <div class="w-layout-hflex flex-block-2">
-          <img src="./images/separador.png" alt="" srcset="" width="300
+          <button href="#" class="button1" style="--clr: #7808d0">
+            <span class="button__icon-wrapper">
+              <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg"
+                width="10">
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"></path>
+              </svg>
+
+              <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
+                class="button__icon-svg button__icon-svg--copy">
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"></path>
+              </svg>
+            </span>
+            Ver mas
+          </button>
+        </div>
+      </div>
+      <div class="w-layout-hflex flex-block-2">
+        <img src="./images/separador.png" alt="" srcset="" width="300
         " style="margin-top: 15%;">
-        </div>
-        <div class="w-layout-blockcontainer container-3 w-container">
-          <h4 class="heading-4">Regalos</h4>
-          <h5 class="description">Nos llenará de alegría contar con tu presencia en nuestra celebración,
-            porque
-            para nosotros su compañía es lo más importante.<br>Si está a su disposición brindar una muestra
-            de
-            cariño, estaremos muy agradecidos.</h5>
-            <div class="w-layout-hflex flex-block-2">
-              <button href="#" class="button1" style="--clr: #7808d0">
-                <span class="button__icon-wrapper">
-                  <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-                    <path
-                      d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                      fill="currentColor"></path>
-                  </svg>
-      
-                  <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-                    class="button__icon-svg button__icon-svg--copy">
-                    <path
-                      d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                      fill="currentColor"></path>
-                  </svg>
-                </span>
-                Ver mas
-              </button>
-            </div>
-        </div>
+      </div>
+      <div class="w-layout-blockcontainer container-3 w-container">
+        <h4 class="heading-4">Regalos</h4>
+        <h5 class="description">Nos llenará de alegría contar con tu presencia en nuestra celebración,
+          porque
+          para nosotros su compañía es lo más importante.<br>Si está a su disposición brindar una muestra
+          de
+          cariño, estaremos muy agradecidos.</h5>
         <div class="w-layout-hflex flex-block-2">
-          <img src="./images/separador.png" alt="" srcset="" width="300
+          <button href="#" class="button1" style="--clr: #7808d0">
+            <span class="button__icon-wrapper">
+              <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg"
+                width="10">
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"></path>
+              </svg>
+
+              <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
+                class="button__icon-svg button__icon-svg--copy">
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"></path>
+              </svg>
+            </span>
+            Ver mas
+          </button>
+        </div>
+      </div>
+      <div class="w-layout-hflex flex-block-2">
+        <img src="./images/separador.png" alt="" srcset="" width="300
         " style="margin-top: 15%;">
+      </div>
+      <div class="w-layout-blockcontainer container-3 w-container">
+        <h4 class="heading-4">Fotos</h4>
+        <h5 class="place">Comparte tus fotos y videos de este hermoso día.</h5>
+        <div class="w-layout-hflex flex-block-2">
+          <button href="#" class="button1" style="--clr: #7808d0">
+            <span class="button__icon-wrapper">
+              <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg"
+                width="10">
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"></path>
+              </svg>
+
+              <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
+                class="button__icon-svg button__icon-svg--copy">
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"></path>
+              </svg>
+            </span>
+            Subir Fotos
+          </button>
         </div>
-        <div class="w-layout-blockcontainer container-3 w-container">
-          <h4 class="heading-4">Fotos</h4>
-          <h5 class="place">Comparte tus fotos y videos de este hermoso día.</h5>
-          <div class="w-layout-hflex flex-block-2">
-            <button href="#" class="button1" style="--clr: #7808d0">
-              <span class="button__icon-wrapper">
-                <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-                  <path
-                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                    fill="currentColor"></path>
-                </svg>
-    
-                <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-                  class="button__icon-svg button__icon-svg--copy">
-                  <path
-                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                    fill="currentColor"></path>
-                </svg>
-              </span>
-              Subir Fotos
-            </button>
-          </div>
-        </div>
-        
+      </div>
+
     </div>
     <div class="w-layout-blockcontainer w-container" style="margin-top: 30%;">
       <section class="footer-dark">
