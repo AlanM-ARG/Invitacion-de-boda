@@ -420,9 +420,9 @@
         color: #4e6350;
         text-align: center;
         word-break: normal;
-        margin-top: 5%;
+        margin-top: 25%;
         font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
-        font-size: 7vw;
+        font-size: 9vw;
         font-weight: 700;
         line-height: 100%;
         display: block;
@@ -612,7 +612,7 @@
         margin-top: 5%;
         /* font-family: Exo, sans-serif; */
         font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
-        font-size: 7vw;
+        font-size: 7.5vw;
         font-weight: 900;
         line-height: 100%;
         display: block;
@@ -646,6 +646,14 @@
         font-family: Exo, sans-serif;
         font-weight: 400;
         font-size: 4vw;
+        margin-top: 8%;
+    }
+
+    .place {
+        text-align: center;
+        font-family: Exo, sans-serif;
+        font-weight: 500;
+        font-size: 5vw;
         margin-top: 8%;
     }
 
