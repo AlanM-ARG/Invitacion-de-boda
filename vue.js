@@ -1,6 +1,7 @@
+import { db, collection, addDoc, getDocs } from "./firebaseConfig.js";
 const { createApp } = Vue;
-
 createApp({
+
     data() {
         return {
             message: 'Hello Vue!',
@@ -23,113 +24,158 @@ createApp({
                 showCancelButton: false,
                 showConfirmButton: false,
                 didOpen: () => {
-                    // Initialize Vue in the modal
+                    // Inicializa una instancia de Vue en el modal de SweetAlert
                     const modalApp = Vue.createApp({
                         data() {
                             return {
+                                db: null,
                                 familias: [],
                                 selectedFamily: '',
                                 selectedMembers: [],
                                 confirmedMembers: [],
-                                attendanceStatus: '',
+                                attendanceStatus: 'decline',
                                 additionalInfo: '',
+                                confirmaciones: [],
+                                miembrosConfirmados: [],
                                 errors: {
                                     selectedFamily: false,
                                     confirmedMembers: false,
                                     attendanceStatus: false,
                                 },
-                                successMessage: '', // Mensaje de éxito
-                                errorMessage: ''    // Mensaje de error
+                                successMessage: '',
+                                errorMessage: ''
                             };
                         },
                         created() {
+
+                            this.initFirebase(); // Inicializa Firebase en el componente del modal
+                            this.getConfirmations();
                             this.loadFamiliesData();
-                            this.initFirebase(); // Inicializa Firebase al crear el componente
                         },
                         methods: {
                             initFirebase() {
-                                // Importar y configurar Firebase
-                                /* const firebaseConfig = {
-                                    apiKey: "YOUR_API_KEY",
-                                    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-                                    databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-                                    projectId: "YOUR_PROJECT_ID",
-                                    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-                                    messagingSenderId: "YOUR_SENDER_ID",
-                                    appId: "YOUR_APP_ID"
-                                };
-                                const app = firebase.initializeApp(firebaseConfig);
-                                this.db = firebase.firestore(); */ // Usa Firestore
-                                // O para Realtime Database, puedes usar:
-                                // this.db = firebase.database();
+                                this.db = db;  // Asigna Firestore a `this.db`
+
+                            },
+                            async getConfirmations() {
+                                // Obtén confirmaciones de Firestore
+                                const confirmations = collection(this.db, 'confirmaciones');
+                                const listadodeConfirmaciones = await getDocs(confirmations);
+                                this.confirmaciones = listadodeConfirmaciones.docs.map(doc => doc.data());
+                                this.confirmaciones.forEach(confirmaciones => {
+                                    confirmaciones.confirmedMembers.forEach(miembrosConfirmed => {
+                                        this.miembrosConfirmados.push(miembrosConfirmed)
+                                    })
+                                })
                             },
                             async loadFamiliesData() {
                                 try {
-                                    const response = await fetch('./miembros.json');
-                                    const data = await response.json();
-                                    this.familias = data.familias;
+                                    const invitados = collection(this.db, 'invitados');
+                                    const listadoDeFamilias = await getDocs(invitados);
+                                    this.familias = listadoDeFamilias.docs
+                                        .map(doc => doc.data())[0].familias
+                                        .sort((a, b) => a.apellido.localeCompare(b.apellido));
+
+                                    // Filtrar y ordenar los miembros de cada familia
+                                    this.familias = this.familias.filter(familia => {
+                                        let miembros = familia.miembros;
+                                        if (Array.isArray(miembros)) {
+                                            // Filtra los miembros que no están confirmados
+                                            let miembrosFiltrados = miembros.filter(miembro => {
+                                                console.log(miembro + " IS CONFIRMED? " + this.miembrosConfirmados.includes(miembro));
+                                                return !this.miembrosConfirmados.includes(miembro);
+                                            });
+
+                                            // Ordena el array `miembrosFiltrados` por `nombre`
+                                            miembrosFiltrados.sort((a, b) => a.localeCompare(b));
+
+                                            // Asigna la nueva lista filtrada y ordenada de miembros a la familia
+                                            familia.miembros = miembrosFiltrados;
+
+                                            // Retorna true si hay miembros filtrados, de lo contrario, filtra la familia
+                                            return miembrosFiltrados.length > 0;
+                                        }
+
+                                        // Si no hay miembros, filtra la familia
+                                        return false;
+                                    });
+
+
+                                    console.log(this.familias);
+
                                 } catch (error) {
                                     console.error("Error al cargar los datos del JSON:", error);
                                 }
                             },
                             updateMembers() {
+
                                 const family = this.familias.find(f => f.apellido === this.selectedFamily);
                                 this.selectedMembers = family ? family.miembros : [];
-                                this.confirmedMembers = []; // Resetea los miembros confirmados cuando se cambia la familia
+                                this.confirmedMembers = [];
                             },
                             resetForm() {
+                                // Resetea todos los datos del formulario
                                 this.selectedFamily = '';
                                 this.selectedMembers = [];
                                 this.confirmedMembers = [];
-                                this.attendanceStatus = '';
+                                this.attendanceStatus = 'decline';
                                 this.additionalInfo = '';
-                                this.successMessage = ''; // Resetea el mensaje de éxito
-                                this.errorMessage = '';   // Resetea el mensaje de error
+                                this.successMessage = '';
+                                this.errorMessage = '';
                             },
                             async submitForm() {
+                                // Validar y enviar formulario a Firebase
                                 this.errors.selectedFamily = !this.selectedFamily;
                                 this.errors.confirmedMembers = this.confirmedMembers.length === 0;
                                 this.errors.attendanceStatus = !this.attendanceStatus;
 
                                 if (!this.errors.selectedFamily && !this.errors.confirmedMembers && !this.errors.attendanceStatus) {
-                                    // Si no hay errores, guarda los datos en Firebase
+                                    // Si no hay errores, guarda en Firestore
                                     const confirmationData = {
                                         selectedFamily: this.selectedFamily,
                                         confirmedMembers: this.confirmedMembers,
                                         attendanceStatus: this.attendanceStatus,
                                         additionalInfo: this.additionalInfo
                                     };
-
                                     try {
-                                        // Guardar en Firestore
-                                        await this.db.collection('confirmaciones').add(confirmationData);
-
-                                        // Mostrar mensaje de éxito
-                                        this.successMessage = '¡Gracias por confirmar tu asistencia!';
-                                        this.resetForm(); // Resetea el formulario después de enviar
+                                        await addDoc(collection(this.db, 'confirmaciones'), confirmationData)
+                                            .then(() => {
+                                                if (this.attendanceStatus == "decline") {
+                                                    Swal.fire({
+                                                        position: "center",
+                                                        icon: "success",
+                                                        title: "¡Gracias por confirmar tu asistencia, una pena que no puedas asistir",
+                                                        html: `
+                                                    <span style='font-size:100px;'>&#129402;</span>`,
+                                                        showConfirmButton: false,
+                                                        timer: 3000
+                                                    })
+                                                } else {
+                                                    Swal.fire({
+                                                        position: "center",
+                                                        icon: "success",
+                                                        title: "¡Gracias por confirmar tu asistencia, nos vemos pronto!",
+                                                        html: `
+                                                    <span style='font-size:100px;'>&#128513;</span>`,
+                                                        showConfirmButton: false,
+                                                        timer: 3000
+                                                    })
+                                                }
+                                                this.getConfirmations();
+                                            });
+                                        this.resetForm();
                                     } catch (error) {
                                         console.error("Error al guardar la confirmación:", error);
                                         this.errorMessage = 'Ocurrió un error al guardar la confirmación. Inténtalo de nuevo.';
                                     }
                                 } else {
-                                    // Si hay errores, establecer el mensaje de error con saltos de línea
-                                    let errorMessage = 'Por favor, completa los siguientes campos: <br>';
-                                    if (this.errors.selectedFamily) {
-                                        errorMessage += ' - Selección de familia.<br>';
-                                    }
-                                    if (this.errors.confirmedMembers) {
-                                        errorMessage += ' - Miembros de la familia.<br>';
-                                    }
-                                    if (this.errors.attendanceStatus) {
-                                        errorMessage += ' - Confirmación de asistencia.<br>';
-                                    }
-                                    this.errorMessage = errorMessage;
+                                    // Si hay errores, muestra el mensaje
+                                    this.errorMessage = 'Por favor, completa todos los campos requeridos.';
                                 }
                             }
-                        },
+                        }
                     });
-
-                    modalApp.mount('#dynamic-form'); // Mount the new Vue instance to the modal's form
+                    modalApp.mount('#dynamic-form');
 
                 },
             });
@@ -152,8 +198,8 @@ createApp({
                             <label class="place" for="nameMembers">Miembros de la familia:</label>
                             <div v-if="selectedMembers.length > 0">
                                 <div v-for="(miembro, index) in selectedMembers" :key="index" class="form-check">
-                                    <input class="form-check-input" type="checkbox" :value="miembro" v-model="confirmedMembers">
-                                    <label class="form-check-label">{{ miembro }}</label>
+                                    <input :id="index" class="form-check-input" type="checkbox" :value="miembro" v-model="confirmedMembers">
+                                    <label  class="form-check-label" :for="index">{{ miembro }}</label>
                                 </div>
                             </div>
                             <div v-else>

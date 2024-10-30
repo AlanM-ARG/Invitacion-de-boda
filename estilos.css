@@ -922,4 +922,7 @@ html {
         border-radius: 5px; /* Bordes redondeados */
         margin-top: 10px; /* Margen superior */
     }
+    .form-check-input{
+        border-color: #000  !important;
+    }
     

@@ -3,109 +3,87 @@
       {
         "apellido": "Casco",
         "miembros": [
-          "Fabiana Casco",
-          "Angel Casco",
-          "Alma Casco",
-          "Ricardo Casco",
-          "Valeria Casco",
-          "Candela Casco",
-          "Sandra Casco",
-          "Silvia Casco"
+          "Fabiana",
+          "Angel",
+          "Brenda",
+          "Alma",
+          "Ricardo",
+          "Valeria",
+          "Candela"
         ]
       },
       {
         "apellido": "Echevarria",
         "miembros": [
-          "Adrian Echevarria"
+          "Adrian",
+          "Dana"
         ]
       },
       {
         "apellido": "Garcia",
         "miembros": [
-          "Daniel Garcia",
-          "Ailiin Garcia",
-          "Benjamin Garcia",
+          "Daniel",
+          "Blanca",
+          "Benjamin",
+
+          "Hernan",
+          "Tatiana",
+          "Jana",
+          "Tobias",
+          "Xiomara",
+          "Isabella",
+          "Ivan",
+          "Santiago",
+
+
           "Oscar Garcia",
           "Gloria Garcia",
           "Azul Garcia",
-          "Nina La Cruz",
-          "Ivan Garcia",
-          "Santiago Garcia",
-          "Hernan Garcia",
-          "Tobias Garcia",
-          "Xiomara Garcia",
-          "Isabella Garcia"
+          "Nina La Cruz"
+          
         ]
       },
       {
         "apellido": "Morua",
         "miembros": [
-          "Alan Morua",
-          "Brisa Morua",
-          "Noah Morua",
-          "Jazlin Morua",
-          "Fernando Morua"
-        ]
-      },
-      {
-        "apellido": "Fernandez",
-        "miembros": [
-          "Dana Fernandez"
-        ]
-      },
-      {
-        "apellido": "Rivero",
-        "miembros": [
-          "Blanca Rivero"
-        ]
-      },
-      {
-        "apellido": "Alegre",
-        "miembros": [
-          "Brenda Alegre"
+          "Fernando",
+          "Brisa",
+          "Noah",
+          "Jazlin"
         ]
       },
       {
         "apellido": "Torres",
         "miembros": [
-          "Juan Torres",
-          "Veronica Torres"
+          "Pablo",
+          "Angela",
+          "Juan"
         ]
       },
       {
         "apellido": "Juarez",
         "miembros": [
-          "Ramiro Juarez"
+          "Ramiro",
+          "Navila"
         ]
       },
       {
-        "apellido": "Ramos",
+        "apellido": "Gonzalez",
         "miembros": [
-          "Navila Ramos"
-        ]
-      },
-      {
-        "apellido": "Gonzales",
-        "miembros": [
-          "Romina Gonzales"
+          "Romina"
         ]
       },
       {
         "apellido": "Vera",
         "miembros": [
-          "Rodrigo Vera"
+          "Rodrigo"
         ]
       },
       {
         "apellido": "Toledo",
         "miembros": [
-          "Melanie Toledo"
-        ]
-      },
-      {
-        "apellido": "Gorosito",
-        "miembros": [
-          "Edith Gorosito"
+          "Melanie",
+          "hijo de Melanie"
         ]
       },
       {
@@ -118,87 +96,70 @@
       {
         "apellido": "Chavez",
         "miembros": [
-          "Eliseo Chavez"
+          "Eliseo",
+          "Edith",
+          "Bastian",
+          "Uma"
         ]
       },
       {
         "apellido": "Paredes",
         "miembros": [
-          "Ailen Paredes"
+          "Ailen"
         ]
       },
       {
         "apellido": "Gomez",
         "miembros": [
-          "Candela Gomez"
+          "Candela"
         ]
       },
       {
         "apellido": "Portillo",
         "miembros": [
-          "Ezequiel Portillo",
-          "Marcos Portillo",
-          "Valentina Portillo"
+          "Ezequiel",
+          "Veronica",
+          "Marcos",
+          "Valentina"
         ]
       },
       {
         "apellido": "Alarcon",
         "miembros": [
-          "Karen Alarcon"
+          "Karen"
         ]
       },
       {
         "apellido": "Godoy",
         "miembros": [
-          "Gerardo Godoy",
-          "Emanuel Godoy",
-          "Tobias Godoy"
+          "Gerardo",
+          "Sandra",
+          "Emanuel",
+          "Tobias"
         ]
       },
       {
         "apellido": "Gorozo",
         "miembros": [
-          "Mario Gorozo"
+          "Mario"
         ]
       },
       {
         "apellido": "Martinez",
         "miembros": [
-          "Ezequiel Martinez"
+          "Ezequiel"
         ]
       },
       {
         "apellido": "Lopez",
         "miembros": [
-          "Elian Lopez"
-        ]
-      },
-      {
-        "apellido": "Gomez",
-        "miembros": [
-          "Candela Gomez"
-        ]
-      },
-      {
-        "apellido": "Maciel",
-        "miembros": [
-          "Lucila Maciel"
+          "Elian"
         ]
       },
       {
         "apellido": "Romano",
         "miembros": [
-          "Elena Romano"
-        ]
-      },
-      {
-        "apellido": "Otros",
-        "miembros": [
-          "UMA",
-          "BASTIAN",
-          "Tatiana",
-          "Jana",
-          "hijo de Melanie"
+          "Elena"
         ]
       }
     ]
