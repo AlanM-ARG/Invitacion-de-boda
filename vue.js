@@ -278,18 +278,15 @@ createApp({
         <h4 class="heading-4">Información Importante</h4>
 
 <ul style="text-align:start !important; margin-top:15%;">
-<li style="margin-top:5%;">
-Ser puntuales
-</li>
-<li style="margin-top:5%;">
-La confirmación debe ser enviada antes del 1 de diciembre.
-</li>
-<li style="margin-top:5%;">
-Si no puedes asistir, por favor avísanos con al menos 48 horas de antelación.
-</li>
-<li style="margin-top:5%;">
-Llevar Traje de baño
-</li>
+  <li style="margin-top:5%;">¡Les pedimos puntualidad para disfrutar de todos los momentos!</li>
+  <li style="margin-top:5%;">Recordamos que será un evento al aire libre, por lo que sugerimos calzado cómodo y adecuado para jardín.</li>
+  <li style="margin-top:5%;">¡No olviden traer traje de baño y toalla! Habrá un espacio disponible para quienes quieran refrescarse en la piscina.</li>
+  <li style="margin-top:5%;">Confirma antes del 1 de diciembre de 2024.</li>
+  <li style="margin-top:5%;">Si surge algún inconveniente y no pueden asistir, avísenos con al menos 48 horas de anticipación.</li>
+  <li style="margin-top:5%;">Contaremos con espacio para estacionar en la quinta, pero también es posible llegar caminando desde los alrededores.</li>
+  <li style="margin-top:5%;">Llevar Repelente.</li>
+  <li style="margin-top:5%;">Para cualquier consulta o información adicional, puedes comunicarte con nosotros al <a href="tel:1162233436">1162233436</a></li>
+
 </ul>
             `,
             })
