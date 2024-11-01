@@ -1,6 +1,6 @@
 // firebaseConfig.js
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js';
-import { getFirestore, collection, addDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
+import { getFirestore, collection, addDoc, doc, updateDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 
 // Configuración de Firebase usando valores de entorno directamente
 const firebaseConfig = {
@@ -17,5 +17,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Exportar `db` y funciones de Firestore
-const db = getFirestore(app);
-export { db, collection, addDoc, getDocs };
+export { db, collection, addDoc, doc, updateDoc, getDocs };
