@@ -40,16 +40,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     const myInterval = setInterval(updateTimer, 1000);
-
-    const audio = document.getElementById("miAudio");
-
-    // Función para reproducir el audio
-    function reproducir() {
-        audio.play();
-    }
-
-    // Función para pausar el audio
-    function pausar() {
-        audio.pause();
-    }
 });

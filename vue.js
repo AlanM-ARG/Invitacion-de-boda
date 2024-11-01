@@ -1,4 +1,4 @@
-import { db, collection, addDoc, getDocs } from "./firebaseConfig.js";
+import { db, collection, addDoc, doc, updateDoc, getDocs } from "./firebaseConfig.js";
 const { createApp } = Vue;
 createApp({
 
@@ -8,8 +8,9 @@ createApp({
             titulo: 'Reproductor de Música con Vue.js',
             currentTime: 0,
             duration: 0,
+            loading: true, // Inicialmente se muestra el loader
+            audio: null,   // Objeto de audio
             isPlaying: false,
-            audio: null,
         }
     },
     created() {
@@ -46,14 +47,14 @@ createApp({
                                 errorMessage: ''
                             };
                         },
-                        created() {
+                        async created() {
 
-                            this.initFirebase(); // Inicializa Firebase en el componente del modal
-                            this.getConfirmations();
-                            this.loadFamiliesData();
+                            await this.initFirebase(); // Inicializa Firebase en el componente del modal
+                            await this.getConfirmations();
+                            await this.loadFamiliesData();
                         },
                         methods: {
-                            initFirebase() {
+                            async initFirebase() {
                                 this.db = db;  // Asigna Firestore a `this.db`
 
                             },
@@ -298,40 +299,206 @@ Llevar Traje de baño
                 showCloseButton: true,
                 showCancelButton: false,
                 showConfirmButton: false,
-                html: `
-        <h4 class="heading-4">Regalos</h4>
+                html: this.regaloshtml(),
+                didOpen: () => {
+                    // Inicializa una instancia de Vue en el modal de SweetAlert
+                    const modalApp = Vue.createApp({
+                        data() {
+                            return {
+                                db: null,
+                                regalos: []
+                            };
+                        },
+                        async created() {
+                            await this.initFirebase();
+                            await this.cargarRegalos();
+                        },
+                        methods: {
+                            initFirebase() {
+                                this.db = db;  // Asigna Firestore a `this.db`
+
+                            },
+                            // Cargar la lista de regalos de Firestore y ordenar
+                            async cargarRegalos() {
+                                const querySnapshot = await getDocs(collection(db, "regalos"));
+                                this.regalos = querySnapshot.docs
+                                    .map(doc => ({ id: doc.id, ...doc.data() }))
+                                this.regalos.sort((a, b) => {
+                                    // Primero ordenar por estado (reservados al final)
+                                    if (a.estado !== b.estado) {
+                                        return a.estado - b.estado;
+                                    }
+                                    // Luego, ordenar alfabéticamente por nombre
+                                    return a.nombre.localeCompare(b.nombre);
+                                });
+                            },
+
+                            // Reservar un regalo en Firestore usando SweetAlert2
+                            async reservarRegalo(id) {
+                                // Pedir nombre o familia usando SweetAlert
+                                const { value: invitado } = await Swal.fire({
+                                    title: 'Reserva de Regalo',
+                                    input: 'text',
+                                    inputLabel: 'Ingrese su nombre o familia para confirmar la reserva',
+                                    customClass: {
+                                        inputLabel: 'swal2-centered-label'
+                                    },
+                                    inputPlaceholder: 'Nombre o Familia',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Reservar',
+                                    cancelButtonText: 'Cancelar',
+                                    inputValidator: (value) => {
+                                        if (!value) {
+                                            return 'Debe ingresar un nombre o familia para continuar';
+                                        }
+                                    }
+                                });
+
+                                // Si el usuario cancela o no ingresa nada, no se hace nada
+                                if (!invitado) return;
+
+                                try {
+                                    // Acceder al documento específico en Firestore
+                                    const regaloRef = doc(db, "regalos", id);
+
+                                    // Actualizar el campo `estado` y `invitado` en Firestore
+                                    await updateDoc(regaloRef, {
+                                        estado: true,
+                                        invitado: invitado
+                                    });
+
+                                    // Actualizar el estado local y ordenar la lista
+                                    this.regalos = this.regalos
+                                        .map(regalo => (regalo.id === id ? { ...regalo, estado: true, invitado } : regalo))
+                                        .sort((a, b) => a.estado - b.estado);
+
+                                    Swal.fire('Reservado!', 'El regalo ha sido reservado con éxito.', 'success');
+                                } catch (error) {
+                                    console.error("Error al reservar el regalo:", error);
+                                    Swal.fire('Error', 'Hubo un problema al reservar el regalo. Intente nuevamente.', 'error');
+                                }
+                            },
+                            async agregarRegaloPersonalizado() {
+                                const { value: formValues } = await Swal.fire({
+                                    title: '¿Quieres regalarnos algo especial?',
+                                    html:
+                                        '<label style="text-align:center">Nombre del regalo:</label>' +
+                                        '<input id="regalo" class="swal2-input m-0 w-100" placeholder="Ej. Cena romántica, viaje, etc.">' +
+                                        '<label style="text-align:center">Tu nombre o familia:</label>' +
+                                        '<input id="invitado" class="swal2-input m-0 w-100" placeholder="Ej. Familia Pérez">',
+                                    focusConfirm: false,
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Agregar',
+                                    cancelButtonText: 'Cancelar',
+                                    preConfirm: () => {
+                                        const regaloNombre = document.getElementById('regalo').value;
+                                        const invitadoNombre = document.getElementById('invitado').value;
+                                        if (!regaloNombre || !invitadoNombre) {
+                                            Swal.showValidationMessage('Debes completar ambos campos');
+                                            return;
+                                        }
+                                        return { regaloNombre, invitadoNombre };
+                                    }
+                                });
+
+                                if (!formValues) return;
+
+                                try {
+                                    // Crear el nuevo regalo con el nombre del invitado
+                                    const nuevoRegalo = {
+                                        nombre: formValues.regaloNombre,
+                                        descripcion: 'Regalo personalizado',
+                                        estado: true, // Este regalo ya está reservado por el invitado
+                                        invitado: formValues.invitadoNombre
+                                    };
+                                    const docRef = await addDoc(collection(db, "regalos"), nuevoRegalo);
+
+                                    // Actualizar la lista local
+                                    this.regalos.push({ id: docRef.id, ...nuevoRegalo });
+                                    this.regalos.sort((a, b) => a.estado - b.estado);
+
+                                    Swal.fire('Agregado!', 'Tu regalo ha sido agregado y reservado con éxito.', 'success');
+                                } catch (error) {
+                                    console.error("Error al agregar el regalo:", error);
+                                    Swal.fire('Error', 'Hubo un problema al agregar el regalo. Intente nuevamente.', 'error');
+                                }
+                            }
+                        }
+                    });
+                    modalApp.mount('#dynamic-alert');
+                },
+            })
+        },
+        regaloshtml() {
+
+            return `<div id="dynamic-alert">
+            <h4 class="heading-4">Regalos</h4>
 
 <p class="place" style="text-align:start !important; margin-top:15%;">
 Para ayudarnos a construir nuestro hogar juntos. Si desean hacerlo, aquí está nuestros datos:
 </p>
-<p class="place" style="text-align:start !important; margin-top:0;">Banco Galicia</p>
-<p class="place" style="text-align:start !important; margin-top:0;">DU: 44256892</p>
-<p class="place" style="text-align:start !important; margin-top:0;">CTA: 4110591-4 081-5</p>
-<p class="place" style="text-align:start !important; margin-top:0;">CBU: 0070081830004110591451</p>
-<p class="place" style="text-align:start !important; margin-top:0;">CUIL: 20442568929</p>
-<p class="place" style="text-align:start !important; margin-top:0;">ALIAS: INCA.ORGANO.CUBITO</p>
-            `,
-            })
+<p>Alias:<br/> 
+<b>alan.morua</b></p>
+    <p>CVU: <b>0000003100078167484238</b></p>
+    <p class="place" style="text-align:start !important; margin-top:15%;">
+Si deseas hacernos un regalo especial abre la lista de regalos:
+</p>
+  <button id="bottone5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Abrir lista de regalos
+   </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="d-flex flex-column gap-1" >
+    <h2>Lista de Regalos</h2>
+    <div class="card w-100" v-for="regalo in regalos" :key="regalo.id">
+  <div class="card-body">
+    <h5 class="card-title" :class="{ tachado: regalo.estado }">{{ regalo.nombre }}</h5>
+    <p class="card-text" :class="{ tachado: regalo.estado }">{{ regalo.descripcion }}</p>
+    <button id="bottone5" v-if="!regalo.estado" @click="reservarRegalo(regalo.id)" >Reservar</button>
+        <button id="bottone5" v-else disabled>Reservado</button>
+  </div>
+</div>
+<button id="bottone5" @click="agregarRegaloPersonalizado">¿Quieres regalarnos algo que no está en la lista? Hazlo saber</button>
+</div>
+
+      
+
+</div>
+
+    </div>
+    
+  </div>
+  </div>`
         },
+        iniciarMusica() {
+            this.audio = this.$refs.audio;
+            this.audio.play()
+                .then(() => {
+                    this.isPlaying = true;
+                    this.loading = false;
+                })
+                .catch((error) => {
+                    console.error("Error al reproducir la música:", error);
+                });
+        },
+        mounted() {
+            this.audio = this.$refs.audio;
 
-    },
-    mounted() {
-        this.audio = this.$refs.audio;
+            if (this.audio) {
+                this.audio.onloadedmetadata = () => {
+                    this.duration = this.audio.duration;
+                };
+                this.audio.ontimeupdate = () => {
+                    this.currentTime = this.audio.currentTime;
+                };
+                this.audio.onended = () => {
+                    this.isPlaying = false;
+                };
+            }
 
-        if (this.audio) {
-            this.audio.onloadedmetadata = () => {
-                this.duration = this.audio.duration;
-            };
-            this.audio.ontimeupdate = () => {
-                this.currentTime = this.audio.currentTime;
-            };
-            this.audio.onended = () => {
-                this.isPlaying = false;
-            };
+            document.addEventListener('DOMContentLoaded', function () {
+                localStorage.setItem('theme', 'light');
+            });
         }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            localStorage.setItem('theme', 'light');
-        });
     }
 }).mount('#app');
