@@ -481,25 +481,25 @@ Si deseas hacernos un regalo especial abre la lista de regalos:
                     console.error("Error al reproducir la música:", error);
                 });
         }
-        },
-        mounted() {
-            this.audio = this.$refs.audio;
+    },
+    mounted() {
+        this.audio = this.$refs.audio;
 
-            if (this.audio) {
-                this.audio.onloadedmetadata = () => {
-                    this.duration = this.audio.duration;
-                };
-                this.audio.ontimeupdate = () => {
-                    this.currentTime = this.audio.currentTime;
-                };
-                this.audio.onended = () => {
-                    this.isPlaying = false;
-                };
-            }
-
-            document.addEventListener('DOMContentLoaded', function () {
-                localStorage.setItem('theme', 'light');
-            });
+        if (this.audio) {
+            this.audio.onloadedmetadata = () => {
+                this.duration = this.audio.duration;
+            };
+            this.audio.ontimeupdate = () => {
+                this.currentTime = this.audio.currentTime;
+            };
+            this.audio.onended = () => {
+                this.isPlaying = false;
+            };
         }
-    
+
+        document.addEventListener('DOMContentLoaded', function () {
+            localStorage.setItem('theme', 'light');
+        });
+    }
+
 }).mount('#app');

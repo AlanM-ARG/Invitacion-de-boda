@@ -32,7 +32,7 @@
         con espalda y vencen; mejor todavía si son tres, porque una cuerda triple no se corta
         fácilmente.<br>Eclesiastés 4:12 </h5>
       <audio ref="audio">
-        <source src="./videoplayback.m4a" type="audio/m4a">
+        <source src="./videoplayback.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
       </audio>
       <img :src="isPlaying ? './images/boton-de-pausa.png' : './images/boton-de-play.png'" @click="togglePlayPause"
@@ -383,7 +383,7 @@
             </h1>
           </div>
       </div>
-      <button @click="iniciarMusica" id="bottone5" >Ver Invitacion</button>
+      <button @click="iniciarMusica()" id="bottone5" >Ver Invitacion</button>
       <img class="image-back" src="./images/fondo.png">
       </div>
     </div>
