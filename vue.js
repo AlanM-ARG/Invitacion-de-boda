@@ -480,6 +480,7 @@ Si deseas hacernos un regalo especial abre la lista de regalos:
                 .catch((error) => {
                     console.error("Error al reproducir la música:", error);
                 });
+        }
         },
         mounted() {
             this.audio = this.$refs.audio;
@@ -500,5 +501,5 @@ Si deseas hacernos un regalo especial abre la lista de regalos:
                 localStorage.setItem('theme', 'light');
             });
         }
-    }
+    
 }).mount('#app');
