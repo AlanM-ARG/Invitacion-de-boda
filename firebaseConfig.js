@@ -4,13 +4,13 @@ import { getFirestore, collection, addDoc, doc, updateDoc, getDocs } from 'https
 
 // Configuración de Firebase usando valores de entorno directamente
 const firebaseConfig = {
-    apiKey: import.meta.env.VUE_APP_FIREBASE_API_KEY || "defaultKey",
-    authDomain: import.meta.env.VUE_APP_FIREBASE_AUTH_DOMAIN || "defaultDomain",
-    projectId: import.meta.env.VUE_APP_FIREBASE_PROJECT_ID || "defaultProject",
-    storageBucket: import.meta.env.VUE_APP_FIREBASE_STORAGE_BUCKET || "defaultBucket",
-    messagingSenderId: import.meta.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID || "defaultSenderId",
-    appId: import.meta.env.VUE_APP_FIREBASE_APP_ID || "defaultAppId",
-    measurementId: import.meta.env.VUE_APP_FIREBASE_MEASUREMENT_ID || "defaultMeasurementId"
+    apiKey: "AIzaSyC5zrYtcyYy8WsZDkNpjog7j_kwmK1vjsM",
+    authDomain: "invitacion-ee4d6.firebaseapp.com",
+    projectId: "invitacion-ee4d6",
+    storageBucket: "invitacion-ee4d6.firebasestorage.app",
+    messagingSenderId: "106937906898",
+    appId: "1:106937906898:web:5147a99092531fe1825f0b",
+    measurementId: "G-VNBFGTCXC0"
 };
 
 // Inicializar Firebase
