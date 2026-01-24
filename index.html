@@ -9,9 +9,10 @@
   <link rel="stylesheet" media="(prefers-color-scheme: light)" href="estilos.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,600;1,600&family=Updock&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,600;1,600&family=Updock&display=swap"
+    rel="stylesheet">
   <link rel="shortcut icon" href="./images/invitacion-de-boda.png" type="image/x-icon">
   <meta name="color-scheme" content="light">
   <title>Invitacion A & A</title>
@@ -20,59 +21,78 @@
 
 <body class="body">
   <div id="app">
-    <img src="/images/b&w2.JPG" alt="" class="image" style="width: 100%; height: auto;">
-    <div class="w-layout-blockcontainer container-2 w-container"><img src="/images/wave-haikei.svg" 
-    class="image-2">
-      <h2 class="heading-2 firstdate">07-12-2024</h2>
-      <h1><strong class="bold-text">Alan &amp; Ailiin</strong></h1>
-      <div class="w-layout-hflex comilla1"><img src="/images/cotizacion-2.png"  width="19"
-          class="image-3"></div>
-      <h5 class="heading-5 m-0">Alguien que está solo puede ser atacado y vencido, pero si son dos, se ponen de
-        espalda
-        con espalda y vencen; mejor todavía si son tres, porque una cuerda triple no se corta
-        fácilmente.<br>Eclesiastés 4:12 </h5>
-      <audio ref="audio">
-        <source src="./videoplayback.mp3" type="audio/mp3">
-        Tu navegador no soporta el elemento de audio.
-      </audio>
-      <img :src="isPlaying ? './images/boton-de-pausa.png' : './images/boton-de-play.png'" @click="togglePlayPause"
-        alt="Botón Play/Pausa" width="60" alt="" class="image-4">
-      <div class="w-layout-hflex comilla2"><img src="/images/cotizacion-1.png" loading="lazy" width="19" alt=""
-          class="image-3"></div>
-      <div class="w-layout-hflex flex-block">
-        <!--             <div class="scroll-down-arrows" data-w-id="4c78047b-e889-a8ff-e2e9-acc090f2fb88"
+    <div v-show="loading" class="loader-overlay">
+      <div class="loader-content">
+        <div class="welcome-message">
+          <div class="welcome-message">
+            <p class="loader updock-regular">Querida familia y amigos,</p>
+            <p class="loader updock-regular">
+              Estamos felices de compartir con ustedes este momento especial en nuestras vidas.
+              Su amor y apoyo significan todo para nosotros.
+            </p>
+            <p class="loader updock-regular">
+              Por favor, confirmen su asistencia, los esperamos!.
+            </p>
+            <h1>
+              <strong class="bold-text">Alan &amp; Ailiin</strong>
+
+            </h1>
+          </div>
+        </div>
+        <button @click="iniciarMusica()" id="btn-inicio" type="button">Ver Invitacion</button>
+        <!-- <img class="image-back" src="./images/fondo.png"> -->
+      </div>
+    </div>
+    <!-- <img src="/images/b&w2.JPG" alt="" class="image" style="width: 100%; height: auto;"> -->
+    <!-- <div class="w-layout-blockcontainer container-2 w-container"><img src="/images/wave-haikei.svg" 
+    class="image-2"> -->
+    <h2 class="heading-2 firstdate">07-12-2024</h2>
+    <h1><strong class="bold-text">Alan &amp; Ailiin</strong></h1>
+    <div class="w-layout-hflex comilla1"><img src="/images/cotizacion-2.png" width="19" class="image-3"></div>
+    <h5 class="heading-5 m-0">Alguien que está solo puede ser atacado y vencido, pero si son dos, se ponen de
+      espalda
+      con espalda y vencen; mejor todavía si son tres, porque una cuerda triple no se corta
+      fácilmente.<br>Eclesiastés 4:12 </h5>
+    <audio ref="audio">
+      <source src="./videoplayback.mp3" type="audio/mp3">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <img :src="isPlaying ? './images/boton-de-pausa.png' : './images/boton-de-play.png'" @click="togglePlayPause"
+      alt="Botón Play/Pausa" width="60" alt="" class="image-4">
+    <div class="w-layout-hflex comilla2"><img src="/images/cotizacion-1.png" loading="lazy" width="19" alt=""
+        class="image-3"></div>
+    <div class="w-layout-hflex flex-block">
+      <!--             <div class="scroll-down-arrows" data-w-id="4c78047b-e889-a8ff-e2e9-acc090f2fb88"
                 data-animation-type="lottie" data-src="/images/6702186dc832b5a7d9025350_a24abbbef0e7474ebb9006f5c713ee2f.json" data-loop="1"
                 data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg"
                 data-default-duration="2" data-duration="0"></div> -->
-      </div>
-      <div class="w-layout-hflex flex-block-2">
-        <img src="./images/separador.png" class="separador"
-       style="margin-top: 10% !important;">
-      </div>
-      <div class="text-block-5">Próximamente...</div>
-      <h6 id="timer" class="heading-3 w-100">00:00:00:00</h6>
-      <div class="w-layout-grid grid w-100">
-        <div id="w-node-_13ac4f91-c108-6594-ec3b-f7a93d838b91-21fc1c84" class="text-block">Días</div>
-        <div id="w-node-_728b7d85-5796-5ef1-64cc-090fcef57c7a-21fc1c84" class="text-block-2">Horas</div>
-        <div id="w-node-ec085dec-0f17-768d-5ca4-fd00a1e43d2d-21fc1c84" class="text-block-3">Minutos</div>
-        <div id="w-node-_1b6b24cc-daf9-e5fb-fce0-09fe7afd26c5-21fc1c84" class="text-block-4">Segundos</div>
-      </div>
     </div>
     <div class="w-layout-hflex flex-block-2">
-      <img src="./images/separador.png" class="separador"
-    style="margin-top: 10% !important;">
+      <img src="./images/separador.png" class="separador" style="margin-top: 10% !important;">
     </div>
-    <div class="w-layout-blockcontainer container-3 w-container" style="margin-top: 15%;">
-      <div class="w-layout-hflex flex-block-2">
-        <img class="img-w-30" src="./images/anillos-de-boda.png">
-      </div>
+    <div class="text-block-5">Próximamente...</div>
+    <h6 id="timer" class="heading-3 w-100">00:00:00:00</h6>
+    <div class="w-layout-grid grid w-100">
+      <div id="w-node-_13ac4f91-c108-6594-ec3b-f7a93d838b91-21fc1c84" class="text-block">Días</div>
+      <div id="w-node-_728b7d85-5796-5ef1-64cc-090fcef57c7a-21fc1c84" class="text-block-2">Horas</div>
+      <div id="w-node-ec085dec-0f17-768d-5ca4-fd00a1e43d2d-21fc1c84" class="text-block-3">Minutos</div>
+      <div id="w-node-_1b6b24cc-daf9-e5fb-fce0-09fe7afd26c5-21fc1c84" class="text-block-4">Segundos</div>
+    </div>
+  </div>
+  <div class="w-layout-hflex flex-block-2">
+    <img src="./images/separador.png" class="separador" style="margin-top: 10% !important;">
+  </div>
+  <div class="w-layout-blockcontainer container-3 w-container" style="margin-top: 15%;">
+    <div class="w-layout-hflex flex-block-2">
+      <img class="img-w-30" src="./images/anillos-de-boda.png">
+    </div>
 
-      <h4 class="heading-4-copy">Casamiento Civil</h4>
-      <!-- <div class="fecha">Fecha</div> -->
+    <h4 class="heading-4-copy">Casamiento Civil</h4>
+    <!-- <div class="fecha">Fecha</div> -->
 
-      <div class="event-date"><span class="date">6 DIC</span>|<span class="time">10:00hs</span>
-      </div>
-      <!--       <div class="w-layout-hflex flex-block-2">
+    <div class="event-date"><span class="date">6 DIC</span>|<span class="time">10:00hs</span>
+    </div>
+    <!--       <div class="w-layout-hflex flex-block-2">
         <button href="#" class="button1" style="--clr: #7808d0">
           <span class="button__icon-wrapper">
             <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
@@ -91,50 +111,48 @@
           Agendar la Fecha
         </button>
       </div> -->
-      <!-- <div class="text-block-6">Lugar</div> -->
-      <h5 class="place">Registro Civil Florencio Varela</h5>
-      <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center;">
-        <a href="https://maps.app.goo.gl/VMyNBWZZdjiaBsuj7" target="_blank" rel="noopener noreferrer">
-          <img src="./images/marcador-de-posicion.png" class="ubicacion"><span class="description m-0"
-            style="text-decoration: underline; color: #000;">Bartolomé Mitre 253</span></a>
-      </div>
-      <div class="w-layout-hflex flex-block-2">
-        <a href="https://maps.app.goo.gl/VMyNBWZZdjiaBsuj7" target="_blank" rel="noopener noreferrer">
-          <button class="button1" style="--clr: #7808d0">
-            <span class="button__icon-wrapper">
-              <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg"
-                width="10">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-
-              <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-                class="button__icon-svg button__icon-svg--copy">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-            </span>
-            ¿Como Llegar?
-          </button>
-        </a>
-
-      </div>
+    <!-- <div class="text-block-6">Lugar</div> -->
+    <h5 class="place">Registro Civil Florencio Varela</h5>
+    <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center;">
+      <a href="https://maps.app.goo.gl/VMyNBWZZdjiaBsuj7" target="_blank" rel="noopener noreferrer">
+        <img src="./images/marcador-de-posicion.png" class="ubicacion"><span class="description m-0"
+          style="text-decoration: underline; color: #000;">Bartolomé Mitre 253</span></a>
     </div>
     <div class="w-layout-hflex flex-block-2">
-      <img src="./images/separador.png" class="separador"
-   style="margin-top: 8% !important;">
+      <a href="https://maps.app.goo.gl/VMyNBWZZdjiaBsuj7" target="_blank" rel="noopener noreferrer">
+        <button class="button1" style="--clr: #7808d0">
+          <span class="button__icon-wrapper">
+            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
+              <path
+                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                fill="currentColor"></path>
+            </svg>
+
+            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
+              class="button__icon-svg button__icon-svg--copy">
+              <path
+                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                fill="currentColor"></path>
+            </svg>
+          </span>
+          ¿Como Llegar?
+        </button>
+      </a>
+
     </div>
-    <div class="w-layout-blockcontainer container-3 w-container">
-      <div class="w-layout-hflex flex-block-2">
-        <img class="img-w-25" src="./images/arco.png">
-      </div>
-      <h4 class="heading-4-copy">Ceremonia</h4>
-      <!-- <div class="fecha">Fecha</div> -->
-      <div class="event-date"><span class="date">7 DIC</span>|<span class="time">11:50hs</span>
-      </div>
-      <!--       <div class="w-layout-hflex flex-block-2">
+  </div>
+  <div class="w-layout-hflex flex-block-2">
+    <img src="./images/separador.png" class="separador" style="margin-top: 8% !important;">
+  </div>
+  <div class="w-layout-blockcontainer container-3 w-container">
+    <div class="w-layout-hflex flex-block-2">
+      <img class="img-w-25" src="./images/arco.png">
+    </div>
+    <h4 class="heading-4-copy">Ceremonia</h4>
+    <!-- <div class="fecha">Fecha</div> -->
+    <div class="event-date"><span class="date">7 DIC</span>|<span class="time">11:50hs</span>
+    </div>
+    <!--       <div class="w-layout-hflex flex-block-2">
         <button href="#" class="button1" style="--clr: #7808d0">
           <span class="button__icon-wrapper">
             <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
@@ -153,45 +171,15 @@
           Agendar la Fecha
         </button>
       </div> -->
-      <h5 class="place">Campo de Amancay</h5>
-      <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center;">
-        <a href="https://maps.app.goo.gl/yoJUmSbaEtnwBVfJA" target="_blank" rel="noopener noreferrer">
-          <img src="./images/marcador-de-posicion.png" class="ubicacion"><span class="description m-0"
-            style="text-decoration: underline; color: #000;">Calle 1136A N° 2441</span></a>
-      </div>
-      <div class="w-layout-hflex flex-block-2">
-        <a href="https://maps.app.goo.gl/yoJUmSbaEtnwBVfJA" target="_blank" rel="noopener noreferrer">
-          <button class="button1" style="--clr: #7808d0">
-            <span class="button__icon-wrapper">
-              <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg"
-                width="10">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-
-              <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-                class="button__icon-svg button__icon-svg--copy">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-            </span>
-            ¿Como Llegar?
-          </button>
-        </a>
-      </div>
+    <h5 class="place">Campo de Amancay</h5>
+    <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center;">
+      <a href="https://maps.app.goo.gl/yoJUmSbaEtnwBVfJA" target="_blank" rel="noopener noreferrer">
+        <img src="./images/marcador-de-posicion.png" class="ubicacion"><span class="description m-0"
+          style="text-decoration: underline; color: #000;">Calle 1136A N° 2441</span></a>
     </div>
     <div class="w-layout-hflex flex-block-2">
-      <img src="./images/separador.png" class="separador">
-    </div>
-    <div class="w-layout-blockcontainer container-3 w-container">
-      <h4 class="heading-4">Confirmar Asistencia</h4>
-      <h5 class="description">¿Nos acompañas en este día tan especial?</h5>
-      <div class="w-layout-hflex qr"><img src="/images/lista-de-verificacion.png" class="img-w-25">
-      </div>
-      <div class="w-layout-hflex flex-block-2">
-        <button @click="formularioAsistencia()" class="button1" style="--clr: #7808d0">
+      <a href="https://maps.app.goo.gl/yoJUmSbaEtnwBVfJA" target="_blank" rel="noopener noreferrer">
+        <button class="button1" style="--clr: #7808d0">
           <span class="button__icon-wrapper">
             <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
               <path
@@ -206,7 +194,104 @@
                 fill="currentColor"></path>
             </svg>
           </span>
-          Confirmar
+          ¿Como Llegar?
+        </button>
+      </a>
+    </div>
+  </div>
+  <div class="w-layout-hflex flex-block-2">
+    <img src="./images/separador.png" class="separador">
+  </div>
+  <div class="w-layout-blockcontainer container-3 w-container">
+    <h4 class="heading-4">Confirmar Asistencia</h4>
+    <h5 class="description">¿Nos acompañas en este día tan especial?</h5>
+    <div class="w-layout-hflex qr"><img src="/images/lista-de-verificacion.png" class="img-w-25">
+    </div>
+    <div class="w-layout-hflex flex-block-2">
+      <button @click="formularioAsistencia()" class="button1" style="--clr: #7808d0">
+        <span class="button__icon-wrapper">
+          <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
+            <path
+              d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+              fill="currentColor"></path>
+          </svg>
+
+          <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
+            class="button__icon-svg button__icon-svg--copy">
+            <path
+              d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+              fill="currentColor"></path>
+          </svg>
+        </span>
+        Confirmar
+      </button>
+    </div>
+  </div>
+  <div class="w-layout-hflex flex-block-2">
+    <img src="./images/separador.png" class="separador">
+  </div>
+  <div class="w-layout-blockcontainer container-3 w-container">
+    <h4 class="heading-4">Dress Code</h4>
+    <div class="w-layout-hflex flex-block-2"><img src="/images/vestido-de-novia.png" class="img-w-30">
+    </div>
+    <h5 class="place">Vestimenta Elegante</h5>
+  </div>
+  <div class="w-layout-hflex flex-block-2">
+    <img src="./images/separador.png" class="separador">
+  </div>
+  <div class="w-layout-blockcontainer container-3 w-container">
+    <!-- <div class="fecha"></div> -->
+    <h4 class="heading-4">Música</h4>
+    <div class="w-layout-hflex flex-block-2"><img src="/images/notas-musicales.png" class="img-w-30">
+    </div>
+    <h5 class="description">¿Cuál es la canción que no debe faltar en la Playlist de la Boda?</h5>
+    <div class="w-layout-hflex flex-block-2">
+      <a href="https://www.youtube.com/playlist?list=PLNpIsMkks2wt6X7je1nkfh5pIvS0dtur3&jct=TTO5jOWJpz1fraiVY06nPg"
+        target="_blank" rel="noopener noreferrer">
+        <button class="button1" style="--clr: #7808d0">
+          <span class="button__icon-wrapper">
+            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
+              <path
+                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                fill="currentColor"></path>
+            </svg>
+
+            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
+              class="button__icon-svg button__icon-svg--copy">
+              <path
+                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                fill="currentColor"></path>
+            </svg>
+          </span>
+          Sugerir Cancion
+        </button>
+      </a>
+
+    </div>
+
+
+    <div class="w-layout-blockcontainer container-3 w-container">
+      <div class="w-layout-hflex flex-block-2">
+        <img src="./images/separador.png" class="separador">
+      </div>
+      <h4 class="heading-4">Información Importante</h4>
+      <div class="w-layout-hflex flex-block-2">
+        <button @click="informacionAdicional()" class="button1" style="--clr: #7808d0">
+          <span class="button__icon-wrapper">
+            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
+              <path
+                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                fill="currentColor"></path>
+            </svg>
+
+            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
+              class="button__icon-svg button__icon-svg--copy">
+              <path
+                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                fill="currentColor"></path>
+            </svg>
+          </span>
+          Ver mas
         </button>
       </div>
     </div>
@@ -214,109 +299,40 @@
       <img src="./images/separador.png" class="separador">
     </div>
     <div class="w-layout-blockcontainer container-3 w-container">
-      <h4 class="heading-4">Dress Code</h4>
-      <div class="w-layout-hflex flex-block-2"><img src="/images/vestido-de-novia.png" class="img-w-30">
+      <h4 class="heading-4">Regalos</h4>
+      <h5 class="description">Nos llenará de alegría contar con tu presencia en nuestra celebración,
+        porque
+        para nosotros su compañía es lo más importante.<br>Si está a su disposición brindar una muestra
+        de
+        cariño, estaremos muy agradecidos.</h5>
+      <div class="w-layout-hflex flex-block-2">
+        <button @click="regalos()" class="button1" style="--clr: #7808d0">
+          <span class="button__icon-wrapper">
+            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
+              <path
+                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                fill="currentColor"></path>
+            </svg>
+
+            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
+              class="button__icon-svg button__icon-svg--copy">
+              <path
+                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                fill="currentColor"></path>
+            </svg>
+          </span>
+          Ver mas
+        </button>
       </div>
-      <h5 class="place">Vestimenta Elegante</h5>
     </div>
     <div class="w-layout-hflex flex-block-2">
       <img src="./images/separador.png" class="separador">
     </div>
     <div class="w-layout-blockcontainer container-3 w-container">
-      <!-- <div class="fecha"></div> -->
-      <h4 class="heading-4">Música</h4>
-      <div class="w-layout-hflex flex-block-2"><img src="/images/notas-musicales.png" class="img-w-30">
-      </div>
-      <h5 class="description">¿Cuál es la canción que no debe faltar en la Playlist de la Boda?</h5>
+      <h4 class="heading-4">Fotos</h4>
+      <h5 class="place">Comparte tus fotos y videos de este hermoso día.</h5>
       <div class="w-layout-hflex flex-block-2">
-        <a href="https://www.youtube.com/playlist?list=PLNpIsMkks2wt6X7je1nkfh5pIvS0dtur3&jct=TTO5jOWJpz1fraiVY06nPg" target="_blank" rel="noopener noreferrer">
-          <button class="button1" style="--clr: #7808d0">
-            <span class="button__icon-wrapper">
-              <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-  
-              <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-                class="button__icon-svg button__icon-svg--copy">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-            </span>
-            Sugerir Cancion
-          </button>
-        </a>
-      
-      </div>
-
-
-      <div class="w-layout-blockcontainer container-3 w-container">
-        <div class="w-layout-hflex flex-block-2">
-          <img src="./images/separador.png" class="separador">
-        </div>
-        <h4 class="heading-4">Información Importante</h4>
-        <div class="w-layout-hflex flex-block-2">
-          <button @click="informacionAdicional()" class="button1" style="--clr: #7808d0">
-            <span class="button__icon-wrapper">
-              <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg"
-                width="10">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-
-              <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-                class="button__icon-svg button__icon-svg--copy">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-            </span>
-            Ver mas
-          </button>
-        </div>
-      </div>
-      <div class="w-layout-hflex flex-block-2">
-        <img src="./images/separador.png" class="separador">
-      </div>
-      <div class="w-layout-blockcontainer container-3 w-container">
-        <h4 class="heading-4">Regalos</h4>
-        <h5 class="description">Nos llenará de alegría contar con tu presencia en nuestra celebración,
-          porque
-          para nosotros su compañía es lo más importante.<br>Si está a su disposición brindar una muestra
-          de
-          cariño, estaremos muy agradecidos.</h5>
-        <div class="w-layout-hflex flex-block-2">
-          <button @click="regalos()" class="button1" style="--clr: #7808d0">
-            <span class="button__icon-wrapper">
-              <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg"
-                width="10">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-
-              <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-                class="button__icon-svg button__icon-svg--copy">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-            </span>
-            Ver mas
-          </button>
-        </div>
-      </div>
-      <div class="w-layout-hflex flex-block-2">
-        <img src="./images/separador.png" class="separador">
-      </div>
-      <div class="w-layout-blockcontainer container-3 w-container">
-        <h4 class="heading-4">Fotos</h4>
-        <h5 class="place">Comparte tus fotos y videos de este hermoso día.</h5>
-        <div class="w-layout-hflex flex-block-2">
-          <a href="https://photos.app.goo.gl/ZEcmZCaX3VXsXP399" target="_blank" rel="noopener noreferrer">
+        <a href="https://photos.app.goo.gl/ZEcmZCaX3VXsXP399" target="_blank" rel="noopener noreferrer">
           <button class="button1" style="--clr: #7808d0">
             <span class="button__icon-wrapper">
               <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg"
@@ -336,49 +352,26 @@
             Subir Fotos
           </button>
         </a>
-        </div>
-      </div>
-
-    </div>
-    <div class="w-layout-hflex flex-block-2">
-      <img src="./images/separador.png" class="separador">
-    </div>
-    
-    <div class="w-layout-blockcontainer w-container" style="margin-top: 20%;">
-      <h1><strong class="bold-text">Alan & Ailiin</strong></h1>
-      <h2 class="heading-2 firstdate">¡Los esperamos!</h2>
-    </div>
-    <div class="w-layout-blockcontainer w-container" style="margin-top: 20%;">
-      <section class="footer-dark">
-        <div class="container-5"></div>
-        <div id="w-node-bb44688b-dc69-2c39-991f-dcd31a274518-21fc1c84" class="footer-block">
-          <div class="footer-copyright-center">Creado por Alan Morua para un día inolvidable.</div>
-        </div>
-      </section>
-    </div>
-    <div v-if="loading" class="loader-overlay">
-
-      <div class="loader-content">
-        <div class="welcome-message">
-          <div class="welcome-message">
-            <p class="loader updock-regular" >Querida familia y amigos,</p>
-            <p class="loader updock-regular" >
-              Estamos felices de compartir con ustedes este momento especial en nuestras vidas. 
-              Su amor y apoyo significan todo para nosotros.
-            </p>
-            <p class="loader updock-regular" >
-              Por favor, confirmen su asistencia, los esperamos!.
-            </p>
-            <h1>
-              <strong class="bold-text">Alan &amp; Ailiin</strong>
-
-            </h1>
-          </div>
-      </div>
-      <button @click="iniciarMusica()" id="bottone5" >Ver Invitacion</button>
-      <!-- <img class="image-back" src="./images/fondo.png"> -->
       </div>
     </div>
+
+  </div>
+  <div class="w-layout-hflex flex-block-2">
+    <img src="./images/separador.png" class="separador">
+  </div>
+
+  <div class="w-layout-blockcontainer w-container" style="margin-top: 20%;">
+    <h1><strong class="bold-text">Alan & Ailiin</strong></h1>
+    <h2 class="heading-2 firstdate">¡Los esperamos!</h2>
+  </div>
+  <div class="w-layout-blockcontainer w-container" style="margin-top: 20%;">
+    <section class="footer-dark">
+      <div class="container-5"></div>
+      <div id="w-node-bb44688b-dc69-2c39-991f-dcd31a274518-21fc1c84" class="footer-block">
+        <div class="footer-copyright-center">Creado por Alan Morua para un día inolvidable.</div>
+      </div>
+    </section>
+  </div>
   </div>
   <!-- Vue -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

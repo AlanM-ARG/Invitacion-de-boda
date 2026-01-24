@@ -63,7 +63,7 @@ createApp({
                                 const listadodeConfirmaciones = await getDocs(confirmations);
                                 this.confirmaciones = listadodeConfirmaciones.docs.map(doc => doc.data());
                                 this.miembrosConfirmados = [];
-                            
+
                                 this.confirmaciones.forEach(confirmacion => {
                                     if (confirmacion.confirmedMembers && confirmacion.selectedFamily) {
                                         confirmacion.confirmedMembers.forEach(miembro => {
@@ -73,7 +73,7 @@ createApp({
                                     }
                                 });
                             }
-                            ,                            
+                            ,
                             async loadFamiliesData() {
                                 try {
                                     const invitados = collection(this.db, 'invitados');
@@ -81,7 +81,7 @@ createApp({
                                     this.familias = listadoDeFamilias.docs
                                         .map(doc => doc.data())[0].familias
                                         .sort((a, b) => a.apellido.localeCompare(b.apellido));
-                            
+
                                     // Filtrar y ordenar los miembros de cada familia
                                     this.familias = this.familias.filter(familia => {
                                         if (Array.isArray(familia.miembros)) {
@@ -90,22 +90,22 @@ createApp({
                                                 console.log(`${miembro} (${uniqueKey}) IS CONFIRMED? ${this.miembrosConfirmados.includes(uniqueKey)}`);
                                                 return !this.miembrosConfirmados.includes(uniqueKey);
                                             });
-                            
+
                                             miembrosFiltrados.sort((a, b) => a.localeCompare(b));
                                             familia.miembros = miembrosFiltrados;
-                            
+
                                             return miembrosFiltrados.length > 0;
                                         }
                                         return false;
                                     });
-                            
+
                                     console.log(this.familias);
-                            
+
                                 } catch (error) {
                                     console.error("Error al cargar los datos del JSON:", error);
                                 }
                             }
-                            ,                          
+                            ,
                             updateMembers() {
                                 const family = this.familias.find(f => f.apellido === this.selectedFamily);
                                 this.selectedMembers = family ? family.miembros : [];
@@ -474,6 +474,7 @@ Si deseas hacernos un regalo especial abre la lista de regalos:
                 })
                 .catch((error) => {
                     console.error("Error al reproducir la música:", error);
+                    this.loading = false;
                 });
         }
     },

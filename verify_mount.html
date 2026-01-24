@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Vue Mount</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Status: {{ status }}</h1>
+        <div v-if="mounted">Vue is Mounted!</div>
+        <div v-else>Vue is NOT Mounted (Static Content)</div>
+    </div>
+
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    status: 'Active',
+                    mounted: true
+                }
+            },
+            mounted() {
+                console.log('Vue App Mounted Successfully');
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

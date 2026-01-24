@@ -1,3 +1,17 @@
+:root {
+    --color-bg-primary: #FAFAFA;
+    /* Blanco Hueso */
+    --color-accent-1: #90a78b;
+    /* Verde Oliva */
+    /* Opción 1: #D5897A (Arcilla Rosa) - Actual */
+    /* Opción 2: #CB997E (Tierra Tostada) */
+    /* Opción 3: #E09F8E (Melocotón Quemado) */
+    --color-accent-2: #D5897A;
+    /* Terracota */
+    --color-text-main: #000000;
+    /* Negro */
+}
+
 *,
 *::before,
 *::after {
@@ -61,12 +75,13 @@ html {
         font-style: normal;
         font-display: swap;
     }
+
     .updock-regular {
         font-family: "Updock", serif !important;
         font-weight: 500 !important;
         font-style: normal;
-      }
-      
+    }
+
 
     a {
         color: black !important;
@@ -217,6 +232,7 @@ html {
         font-size: 14px;
         line-height: 16px;
     }
+
     .footer-content {
         grid-column-gap: 60px;
     }
@@ -363,8 +379,8 @@ html {
     }
 
     body {
-        background-color: #ffffff !important;
-
+        background-color: var(--color-bg-primary) !important;
+        color: var(--color-text-main);
         padding-top: 5%;
         padding-left: 5%;
         padding-right: 5%;
@@ -393,7 +409,7 @@ html {
     }
 
     .bold-text {
-        color: #4e6350;
+        color: var(--color-accent-1);
         text-align: center;
         justify-content: space-between;
         align-items: center;
@@ -543,7 +559,7 @@ html {
     .text-block-2,
     .text-block-3,
     .text-block-4 {
-        color: #90a78b;
+        color: var(--color-accent-1);
         text-align: center;
         font-family: Oswald, sans-serif;
         margin-bottom: 0%;
@@ -552,7 +568,7 @@ html {
     }
 
     .text-block-5 {
-        color: #90a78b;
+        color: var(--color-accent-1);
         height: auto;
         margin-top: 25%;
         margin-left: 1.5vw;
@@ -587,7 +603,7 @@ html {
     }
 
     .heading-5 {
-        color: #4e6350;
+        color: var(--color-accent-1);
         text-align: center;
         letter-spacing: normal;
         margin-right: 0%;
@@ -671,7 +687,7 @@ html {
     .button {
         color: #fff;
         text-align: center;
-        background-color: #90a78b;
+        background-color: var(--color-accent-2);
     }
 
     .flex-block-2 {
@@ -732,7 +748,7 @@ html {
         cursor: pointer;
         align-items: center;
         gap: 0.75rem;
-        background-color: #90a78b;
+        background-color: var(--color-accent-2);
         color: #fff;
         border-radius: 10rem;
         font-weight: 600;
@@ -749,7 +765,7 @@ html {
         width: 25px;
         height: 25px;
         position: relative;
-        color: #90a78b;
+        color: var(--color-accent-2);
         background-color: #fff;
         border-radius: 50%;
         display: grid;
@@ -758,11 +774,11 @@ html {
     }
 
     .button1:hover {
-        background-color: #4e6350;
+        background-color: var(--color-accent-1);
     }
 
     .button1:hover .button__icon-wrapper {
-        color: #4e6350;
+        color: var(--color-accent-1);
     }
 
     .button__icon-svg--copy {
@@ -893,10 +909,11 @@ html {
     .footer-copyright-center {
         color: #fff;
     }
+
     #w-node-ec085dec-0f17-768d-5ca4-fd00a1e43d2d-21fc1c84 {
         grid-area: span 1 / span 1 / span 1 / span 1;
     }
-    
+
     .warning-message {
         color: #856404;
         /* Color de texto marrón oscuro */
@@ -911,7 +928,7 @@ html {
         margin-top: 10px;
         /* Margen superior */
     }
-    
+
     .error-message {
         color: #d9534f;
         /* Color de texto rojo */
@@ -926,7 +943,7 @@ html {
         margin-top: 10px;
         /* Margen superior */
     }
-    
+
     .success-message {
         color: #155724;
         /* Color de texto verde oscuro */
@@ -941,15 +958,16 @@ html {
         margin-top: 10px;
         /* Margen superior */
     }
-    
+
     .form-check-input {
         border-color: #000 !important;
     }
-    
-    /* From Uiverse.io by Custyyyy */ 
-    #bottone5 {
+
+    /* From Uiverse.io by Custyyyy */
+    #bottone5,
+    #btn-inicio {
         align-items: center;
-        background-color: #90a78b;
+        background-color: var(--color-accent-2);
         border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: .25rem;
         box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -957,7 +975,7 @@ html {
         color: white;
         cursor: pointer;
         display: inline-flex;
-        font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 16px;
         font-weight: 600;
         justify-content: center;
@@ -971,35 +989,42 @@ html {
         touch-action: manipulation;
         vertical-align: baseline;
         width: auto;
-       }
-       
-       #bottone5:hover,
-       #bottone5:focus {
+    }
+
+    #bottone5:hover,
+    #bottone5:focus,
+    #btn-inicio:hover,
+    #btn-inicio:focus {
         border-color: rgba(0, 0, 0, 0.15);
         box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
         color: rgba(0, 0, 0, 0.65);
-       }
-       
-       #bottone5:hover {
+    }
+
+    #bottone5:hover,
+    #btn-inicio:hover {
         transform: translateY(-1px);
-       }
-       
-       #bottone5:active {
+    }
+
+    #bottone5:active,
+    #btn-inicio:active {
         background-color: #F0F0F1;
         border-color: rgba(0, 0, 0, 0.15);
         box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
         color: rgba(0, 0, 0, 0.65);
         transform: translateY(0);
-       }
-       .tachado {
+    }
+
+    .tachado {
         text-decoration: line-through;
         color: gray;
-      }
-      .swal2-centered-label {
-        text-align: center; /* Centra el título/label */
-      }
-    
-      .loader-overlay {
+    }
+
+    .swal2-centered-label {
+        text-align: center;
+        /* Centra el título/label */
+    }
+
+    .loader-overlay {
         position: fixed;
         top: 0;
         left: 0;
@@ -1011,12 +1036,14 @@ html {
         justify-content: center;
         background-color: #F0F0F1;
         z-index: 1000;
-      }
-      .loader-content {
+    }
+
+    .loader-content {
         text-align: center;
         margin-bottom: 20px;
-      }
-      .play-button {
+    }
+
+    .play-button {
         padding: 10px 20px;
         font-size: 16px;
         cursor: pointer;
@@ -1024,8 +1051,9 @@ html {
         background-color: #333;
         color: white;
         border-radius: 5px;
-      }
-      .image-back{
+    }
+
+    .image-back {
         position: fixed;
         top: 0;
         left: 0;
@@ -1033,99 +1061,95 @@ html {
         height: 100vh;
         opacity: .08;
         z-index: -1;
-      }
+    }
 
-      .separador{
+    .separador {
         width: 90%;
         margin-top: 15%;
-      }
+    }
 
-      .loader{
+    .loader {
         font-size: 8vw;
-      }
+    }
 
-      .img-w-30{
+    .img-w-30 {
         width: 30vw;
-      }
+    }
 
-      .img-w-25{
+    .img-w-25 {
         width: 25vw;
-      }
+    }
 
-      .ubicacion{
+    .ubicacion {
         width: 5vw;
-      }
+    }
 }
 
 
 @media screen and (min-width: 426px) {
 
-    .loader{
+    .loader {
         font-size: 7vw;
         margin-top: 8%;
-      }
+    }
 
-      .bold-text{
+    .bold-text {
         font-size: 15vw;
-      }
+    }
 
-      .form-select{
+    .form-select {
         font-size: 3vw !important;
-      }
+    }
 
-      .form-check-label{
+    .form-check-label {
         font-size: 3vw !important;
 
-      }
+    }
 
-      .form-control{
+    .form-control {
         font-size: 3vw !important;
-      }
+    }
 
-      .warning-message{
+    .warning-message {
         font-size: 3vw !important;
-      }
+    }
 }
 
 @media screen and (min-width: 560px) {
-    .loader{
+    .loader {
         font-size: 6vw;
         margin-top: 0%;
-      }
+    }
 
-      .bold-text{
+    .bold-text {
         font-size: 12vw;
-      }
+    }
 
-      .button1{
+    .button1 {
         transform: scale(1.5);
-      }
+    }
 }
 
 @media screen and (min-width: 880px) {
-    .loader{
+    .loader {
         font-size: 5vw;
-      }
+    }
 
-      .bold-text{
+    .bold-text {
         margin-top: 5%;
         font-size: 12vw;
-      }
+    }
 }
 
 @media screen and (min-width: 1024px) {
-    .loader{
+    .loader {
         font-size: 4vw;
         margin-top: 0%;
-      }
+    }
 
-      .button1{
+    .button1 {
         transform: scale(2);
-      }
+    }
 
 
 }
-
-
-
-
