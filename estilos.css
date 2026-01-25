@@ -1121,6 +1121,21 @@ html {
         margin-top: 15%;
     }
 
+    .separador4 {
+        width: 100%;
+        /* Ocupa todo el ancho del contenedor padre */
+        height: auto;
+        /* Mantiene la proporción (aspect ratio) para no deformarse */
+        display: block;
+        /* Elimina espacios fantasma debajo de la imagen */
+        max-width: 600px;
+        /* Opcional: Para que en PC no se vea gigante y pixelada */
+        margin: 2rem auto;
+        /* Centrado automático y espaciado vertical */
+        object-fit: contain;
+        /* Asegura que la imagen se vea completa */
+    }
+
     .loader {
         font-size: 8vw;
     }
