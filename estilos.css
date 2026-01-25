@@ -1,15 +1,30 @@
 :root {
-    --color-bg-primary: #FAFAFA;
-    /* Blanco Hueso */
-    --color-accent-1: #90a78b;
-    /* Verde Oliva */
-    /* Opción 1: #D5897A (Arcilla Rosa) - Actual */
-    /* Opción 2: #CB997E (Tierra Tostada) */
-    /* Opción 3: #E09F8E (Melocotón Quemado) */
-    --color-accent-2: #D5897A;
-    /* Terracota */
-    --color-text-main: #000000;
-    /* Negro */
+    --color-bg-primary: #ffffff;
+    /* Fondo general */
+    --color-text-primary: #333333;
+    /* Texto general */
+    --color-text-main: #333333;
+    /* Alias para compatibilidad */
+
+    --color-accent-green: #588157;
+    /* Iconos, Ramas, Texto secundario */
+    --color-cta-terracotta: #D5897A;
+    /* Botones, Nombres, Timer */
+
+    --color-accent-terracotta: var(--color-cta-terracotta);
+    /* Alias */
+
+    /* Mapeo legacy */
+    --color-accent-1: var(--color-accent-green);
+    --color-accent-2: var(--color-cta-terracotta);
+}
+
+.divider-simple {
+    width: 50px;
+    height: 1px;
+    background-color: var(--color-accent-green);
+    opacity: 0.3;
+    margin: 3rem auto;
 }
 
 *,
@@ -409,13 +424,28 @@ html {
     }
 
     .bold-text {
-        color: var(--color-accent-1);
+        color: var(--color-accent-terracotta);
         text-align: center;
         justify-content: space-between;
         align-items: center;
         margin-top: 10%;
         font-family: Gardenparty Personal Use Only, sans-serif;
-        font-size: 16vw;
+        font-size: 12vw;
+        /* Aumentado */
+        font-weight: 500;
+        line-height: 100%;
+        display: block;
+    }
+
+    .iniciales {
+        color: var(--color-accent-terracotta);
+        text-align: center;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10%;
+        font-family: Gardenparty Personal Use Only, sans-serif;
+        font-size: 20vw;
+        /* Aumentado */
         font-weight: 500;
         line-height: 100%;
         display: block;
@@ -463,7 +493,7 @@ html {
     }
 
     .heading-3 {
-        color: #4e6350;
+        color: var(--color-cta-terracotta);
         text-align: center;
         margin-top: 0%;
         margin-bottom: 0;
@@ -559,7 +589,7 @@ html {
     .text-block-2,
     .text-block-3,
     .text-block-4 {
-        color: var(--color-accent-1);
+        color: var(--color-cta-terracotta);
         text-align: center;
         font-family: Oswald, sans-serif;
         margin-bottom: 0%;
@@ -748,8 +778,9 @@ html {
         cursor: pointer;
         align-items: center;
         gap: 0.75rem;
-        background-color: var(--color-accent-2);
-        color: #fff;
+        background-color: var(--color-accent-terracotta);
+        color: #FFFFFF;
+        /* Texto blanco */
         border-radius: 10rem;
         font-weight: 600;
         padding: 0.75rem 1.5rem;
@@ -757,7 +788,7 @@ html {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        transition: background-color 0.3s;
+        transition: background-color 0.3s, filter 0.3s;
     }
 
     .button__icon-wrapper {
@@ -765,7 +796,7 @@ html {
         width: 25px;
         height: 25px;
         position: relative;
-        color: var(--color-accent-2);
+        color: var(--color-accent-terracotta);
         background-color: #fff;
         border-radius: 50%;
         display: grid;
@@ -774,11 +805,15 @@ html {
     }
 
     .button1:hover {
-        background-color: var(--color-accent-1);
+        background-color: var(--color-accent-terracotta);
+        filter: brightness(0.9);
+        /* Oscurecer en hover */
+        color: #FFFFFF;
     }
 
     .button1:hover .button__icon-wrapper {
-        color: var(--color-accent-1);
+        color: var(--color-accent-terracotta);
+        /* Mantener icono en terracota */
     }
 
     .button__icon-svg--copy {
@@ -959,20 +994,36 @@ html {
         /* Margen superior */
     }
 
+    .form-control,
+    .form-select {
+        border: 1px solid var(--color-accent-green) !important;
+        color: var(--color-text-main) !important;
+    }
+
+    /* Iconos con color de acento verde */
+    .button__icon-svg path,
+    .button__icon-svg--copy path {
+        fill: var(--color-accent-green);
+        stroke: var(--color-accent-green);
+        stroke-width: 0.5px;
+        /* Aumentar peso visual */
+    }
+
     .form-check-input {
-        border-color: #000 !important;
+        border-color: var(--color-accent-green) !important;
     }
 
     /* From Uiverse.io by Custyyyy */
     #bottone5,
     #btn-inicio {
         align-items: center;
-        background-color: var(--color-accent-2);
+        background-color: var(--color-accent-terracotta);
         border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: .25rem;
         box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
         box-sizing: border-box;
-        color: white;
+        color: #FFFFFF;
+        /* Texto blanco para contraste */
         cursor: pointer;
         display: inline-flex;
         font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -997,7 +1048,9 @@ html {
     #btn-inicio:focus {
         border-color: rgba(0, 0, 0, 0.15);
         box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-        color: rgba(0, 0, 0, 0.65);
+        filter: brightness(0.9);
+        /* Oscurecer ligeramente en hover */
+        color: #FFFFFF;
     }
 
     #bottone5:hover,
@@ -1093,13 +1146,7 @@ html {
         margin-top: 8%;
     }
 
-    .bold-text {
-        font-size: 15vw;
-    }
 
-    .form-select {
-        font-size: 3vw !important;
-    }
 
     .form-check-label {
         font-size: 3vw !important;

@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Define la fecha objetivo en la zona horaria de Argentina
     const targetDate = DateTime.fromObject({
-        year: 2024,
-        month: 12,
-        day: 7,
+        year: 2026,
+        month: 3,
+        day: 21,
         hour: 9,
         minute: 0,
         second: 0
