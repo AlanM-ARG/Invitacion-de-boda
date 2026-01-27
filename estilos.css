@@ -1151,6 +1151,46 @@ html {
     .ubicacion {
         width: 5vw;
     }
+
+    /* Nuevos estilos Boho Elegante */
+    .event-date-hero {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        /* Hácelo grande */
+        font-weight: 600;
+        color: var(--color-accent-green);
+        /* O usa el terracota si prefieres */
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+        text-align: center;
+        /* Un poco de aire entre números queda elegante */
+    }
+
+    .bible-verse {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.5rem;
+        /* Buen tamaño para leer */
+        font-weight: 500;
+        /* Semi-bold pero no muy grueso */
+        font-style: italic;
+        /* CRÍTICO: Dale estilo cursiva */
+        color: var(--color-accent-green);
+        line-height: 1.4;
+        max-width: 80%;
+        /* Para que no ocupe todo el ancho de pantalla */
+        margin: 0 auto 2rem auto;
+        /* Centrado */
+    }
+
+    /* Para la cita "Mateo 19:6" */
+    .bible-verse-citation {
+        font-family: 'Playfair Display', serif;
+        font-style: normal;
+        font-size: 1rem;
+        margin-top: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
 }
 
 
@@ -1192,26 +1232,71 @@ html {
     }
 }
 
-@media screen and (min-width: 880px) {
-    .loader {
-        font-size: 5vw;
-    }
-
-    .bold-text {
-        margin-top: 5%;
-        font-size: 12vw;
-    }
+/* TAREA 2: Iconos */
+.icon-section {
+    stroke: #588157;
+    stroke-width: 1.5px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 1024px) {
-    .loader {
-        font-size: 4vw;
-        margin-top: 0%;
-    }
+/* Asegurar que los SVGs de botones también usen el estilo si se requiere, 
+       aunque la clase icon-section es para usarse directamente o en iconos nuevos.
+       Forzamos el cambio en los SVGs existentes */
+.button__icon-svg path,
+.button__icon-svg--copy path {
+    stroke: #588157;
+    stroke-width: 1.5px;
+    fill: transparent;
+    /* "Outline" style */
+}
 
-    .button1 {
-        transform: scale(2);
-    }
+/* TAREA 3: Tipografía y Jerarquía */
+#timer {
+    font-family: 'Playfair Display', serif;
+    /* Coincidir con la elegancia */
+    font-weight: 600;
+    letter-spacing: 2px;
+}
 
+.heading-4,
+.heading-4-copy {
+    font-family: 'Playfair Display', serif;
+    /* Unificar fuente */
+    font-size: 2rem;
+    /* Tamaño constante */
+    font-weight: 600;
+    color: #588157;
+    /* Verde Oliva */
+    margin-top: 3rem;
+    /* Espaciado */
+    margin-bottom: 1rem;
+}
 
+/* Tarea 4: Fiesta Alignment */
+.event-date-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.time-continuous {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Spacing utility for removed separators */
+.section-spacer {
+    margin-bottom: 4rem;
+    /* Espacio en blanco */
+    text-align: center;
+    color: var(--color-cta-terracotta);
+    font-size: 1.5rem;
+}
 }

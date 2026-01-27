@@ -11,7 +11,8 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,600;1,600&family=Updock&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:wght@400;600;700&display=swap"
     rel="stylesheet">
   <link rel="shortcut icon" href="./images/invitacion-de-boda.png" type="image/x-icon">
   <meta name="color-scheme" content="light">
@@ -21,7 +22,7 @@
 
 <body class="body">
   <div id="app">
-    <div v-show="loading" class="loader-overlay">
+    <!-- <div v-show="loading" class="loader-overlay">
       <div class="loader-content">
         <div class="welcome-message">
           <div class="welcome-message">
@@ -34,23 +35,28 @@
               Por favor, confirmen su asistencia, los esperamos!.
             </p>
             <h1>
-              <strong class="bold-text">Alan &amp; Ailiin</strong>
+              <strong class="bold-text">Agustin &amp; Bahiana</strong>
 
             </h1>
           </div>
         </div>
         <button @click="iniciarMusica()" id="btn-inicio" type="button">Ver Invitacion</button>
-        <!-- <img class="image-back" src="./images/fondo.png"> -->
+         <img class="image-back" src="./images/fondo.png"> 
       </div>
-    </div>
+    </div> -->
     <img src="/images/imagen-principal3.png" alt="imagen-principal" class="image" style="width: 100%; height: auto;">
     <!-- <div class="w-layout-blockcontainer container-2 w-container"><img src="/images/wave-haikei.svg"
     class="image-2"> -->
     <!-- <h2><strong class="iniciales">B &amp; A</strong></h2> -->
-    <h2 class="heading-2 firstdate">21-03-2026</h2>
+
+    <h2 class="event-date-hero">21-03-2026</h2>
     <!-- <h4><strong class="bold-text">Bahiana &amp; Agustin</strong></h4> -->
     <div class="w-layout-hflex comilla1"><img src="/images/cotizacion-2.png" width="19" class="image-3"></div>
-    <h5 class="heading-5 m-0">"Por tanto, lo que Dios juntó, no lo separe el hombre."<br>Mateo 19:6</h5>
+
+    <div style="text-align: center;">
+      <p class="bible-verse">"Por tanto, lo que Dios juntó, no lo separe el hombre."</p>
+      <p class="bible-verse-citation">Mateo 19:6</p>
+    </div>
     <audio ref="audio">
       <source src="./videoplayback.mp3" type="audio/mp3">
       Tu navegador no soporta el elemento de audio.
@@ -77,12 +83,10 @@
       <div id="w-node-_1b6b24cc-daf9-e5fb-fce0-09fe7afd26c5-21fc1c84" class="text-block-4">Segundos</div>
     </div>
   </div>
-  <div class="w-layout-hflex flex-block-2">
-    <img src="./images/separador4.png" class="separador4" style="margin-top: 10% !important;">
-  </div>
-  <div class="w-layout-blockcontainer container-3 w-container" style="margin-top: 15%;">
+  <div class="section-spacer">•</div>
+  <div class="w-layout-blockcontainer container-3 w-container" style="margin-top: 5%;">
     <div class="w-layout-hflex flex-block-2">
-      <img class="img-w-30" src="./images/anillos-de-boda.png">
+      <img class="img-w-30" src="./images/anillos.png">
     </div>
 
     <h4 class="heading-4-copy">Civil</h4>
@@ -194,14 +198,15 @@
       </a>
     </div>
   </div>
-    <div class="w-layout-hflex flex-block-2">
-      <img src="./images/separador4.png" class="separador4" style="margin-top: 10% !important;">
-    </div>
+  <div class="section-spacer">•</div>
   <div class="w-layout-hflex flex-block-2">
-    <img class="img-w-25" src="./images/notas-musicales.png">
+    <img class="img-w-25" src="./images/pastel-de-boda.png">
   </div>
   <h4 class="heading-4-copy">Fiesta</h4>
-  <div class="event-date"><span class="date">21 MAR</span>|<span class="time">A cont.</span></div>
+  <div class="event-date-column">
+    <span class="date heading-3">21 MAR</span>
+    <span class="time-continuous">A continuación de la ceremonia</span>
+  </div>
   <h5 class="place">Quinta Las Cuatro Estaciones</h5>
   <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center;">
     <a href="#" target="_blank" rel="noopener noreferrer">
@@ -230,9 +235,7 @@
     </a>
   </div>
   </div>
-    <div class="w-layout-hflex flex-block-2">
-      <img src="./images/separador4.png" class="separador4" style="margin-top: 10% !important;">
-    </div>
+  <div class="section-spacer">•</div>
   <div class="w-layout-blockcontainer container-3 w-container">
     <h4 class="heading-4">Confirmar Asistencia</h4>
     <h5 class="description">¿Nos acompañas en este día tan especial?</h5>
@@ -258,9 +261,7 @@
       </button>
     </div>
   </div>
-  <div class="w-layout-hflex flex-block-2">
-    <img src="./images/separador4.png" class="separador4">
-  </div>
+  <div class="section-spacer">•</div>
   <div class="w-layout-blockcontainer container-3 w-container">
     <h4 class="heading-4">Dress Code</h4>
     <div class="w-layout-hflex flex-block-2"><img src="/images/vestido-de-novia.png" class="img-w-30">
@@ -269,9 +270,7 @@
     <h5 class="description" style="margin-top: 10px; font-weight: bold;">🏊 ¡Nota Importante! No olviden traer ropa para
       la pileta.</h5>
   </div>
-  <div class="w-layout-hflex flex-block-2">
-    <img src="./images/separador4.png" class="separador4">
-  </div>
+  <div class="section-spacer">•</div>
   <div class="w-layout-blockcontainer container-3 w-container">
     <!-- <div class="fecha"></div> -->
     <h4 class="heading-4">Música</h4>
@@ -304,9 +303,7 @@
 
 
     <div class="w-layout-blockcontainer container-3 w-container">
-      <div class="w-layout-hflex flex-block-2">
-        <img src="./images/separador4.png" class="separador4">
-      </div>
+      <div class="section-spacer">•</div>
       <h4 class="heading-4">Información Importante</h4>
       <div class="w-layout-hflex flex-block-2">
         <button @click="informacionAdicional()" class="button1" style="--clr: #7808d0">
@@ -328,9 +325,7 @@
         </button>
       </div>
     </div>
-        <div class="w-layout-hflex flex-block-2">
-      <img src="./images/separador4.png" class="separador4" style="margin-top: 10% !important;">
-    </div>
+    <div class="section-spacer">•</div>
     <div class="w-layout-blockcontainer container-3 w-container">
       <h4 class="heading-4">Regalos</h4>
       <h5 class="description">Su presencia es súper valiosa y nuestro mejor regalo. Si desean hacernos un presente, nos
@@ -355,9 +350,7 @@
         </button>
       </div>
     </div>
-        <div class="w-layout-hflex flex-block-2">
-      <img src="./images/separador4.png" class="separador4" style="margin-top: 10% !important;">
-    </div>
+    <div class="section-spacer">•</div>
     <div class="w-layout-blockcontainer container-3 w-container">
       <h4 class="heading-4">Fotos</h4>
       <h5 class="place">Comparte tus fotos y videos de este hermoso día.</h5>
@@ -391,14 +384,14 @@
   </div>
 
   <div class="w-layout-blockcontainer w-container" style="margin-top: 20%;">
-    <h1><strong class="bold-text">Bahiana & Agustin</strong></h1>
-    <h2 class="heading-2 firstdate">¡Los esperamos!</h2>
+    <h1><strong class="bold-text">Agustin &amp; Bahiana</strong></h1>
+    <!-- <h2 class="heading-2 firstdate">¡Los esperamos!</h2> -->
   </div>
   <div class="w-layout-blockcontainer w-container" style="margin-top: 20%;">
     <section class="footer-dark">
       <div class="container-5"></div>
       <div id="w-node-bb44688b-dc69-2c39-991f-dcd31a274518-21fc1c84" class="footer-block">
-        <div class="footer-copyright-center">Creado por Alan Morua para un día inolvidable.</div>
+        <div class="footer-copyright-center"></div>
       </div>
     </section>
   </div>

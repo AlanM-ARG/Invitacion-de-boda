@@ -8,7 +8,7 @@ createApp({
             titulo: 'Reproductor de Música con Vue.js',
             currentTime: 0,
             duration: 0,
-            loading: true, // Inicialmente se muestra el loader
+            // loading: true, // Inicialmente se muestra el loader
             audio: null,   // Objeto de audio
             isPlaying: false,
         }
@@ -465,18 +465,18 @@ Si deseas hacernos un regalo especial abre la lista de regalos:
   </div>
   </div>`
         },
-        iniciarMusica() {
-            this.audio = this.$refs.audio;
-            this.audio.play()
-                .then(() => {
-                    this.isPlaying = true;
-                    this.loading = false;
-                })
-                .catch((error) => {
-                    console.error("Error al reproducir la música:", error);
-                    this.loading = false;
-                });
-        }
+        // iniciarMusica() {
+        //     this.audio = this.$refs.audio;
+        //     this.audio.play()
+        //         .then(() => {
+        //             this.isPlaying = true;
+        //             this.loading = false;
+        //         })
+        //         .catch((error) => {
+        //             console.error("Error al reproducir la música:", error);
+        //             this.loading = false;
+        //         });
+        // }
     },
     mounted() {
         this.audio = this.$refs.audio;
