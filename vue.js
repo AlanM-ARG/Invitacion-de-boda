@@ -367,10 +367,13 @@ const app = createApp({
         }
     },
     mounted() {
-        // Ocultar pre-loader al montar Vue
+        // Ocultar pre-loader al montar Vue con transición suave
         const preLoader = document.getElementById('pre-loader');
         if (preLoader) {
-            preLoader.style.display = 'none';
+            preLoader.classList.add('fade-out');
+            setTimeout(() => {
+                preLoader.style.display = 'none';
+            }, 500); // Esperar a que termine la transición CSS (0.5s)
         }
 
         this.audio = this.$refs.audio;

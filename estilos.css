@@ -1174,12 +1174,20 @@ body::before {
         left: 0;
         width: 100vw;
         height: 100vh;
+        height: 100dvh;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         background-color: #FAF9F6;
         z-index: 1000;
+    }
+
+    /* Clase para desvanecer el pre-loader suavemente */
+    .fade-out {
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+        pointer-events: none;
     }
 
     .loader-content {
