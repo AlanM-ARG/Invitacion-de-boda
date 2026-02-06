@@ -1674,3 +1674,10 @@ p.loader {
     color: #000 !important;
     /* Un poco más oscuro para legibilidad si se desea, o mantener */
 }
+
+.notranslate {
+    -webkit-translate: no;
+    -moz-translate: no;
+    -ms-translate: no;
+    translate: no;
+}
