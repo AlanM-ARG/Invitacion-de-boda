@@ -65,6 +65,11 @@ body::before {
     background-size: cover;
     background-attachment: scroll;
     background-position: center center;
+    /* Optimización de background fijo en móviles */
+    transform: translateZ(0);
+    will-change: transform;
+    min-height: 100vh;
+    min-height: 100dvh;
 
     /* Hacemos que esta capa ocupe toda la pantalla y se quede fija */
     position: fixed;
@@ -1185,11 +1190,15 @@ body::before {
         z-index: 1000;
     }
 
-    /* Clase para desvanecer el pre-loader suavemente */
-    .fade-out {
+    /* Animaciones de Vue (transition name="fade") */
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.8s ease;
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
         opacity: 0;
-        transition: opacity 0.5s ease-out;
-        pointer-events: none;
     }
 
     .loader-content {
@@ -1532,6 +1541,11 @@ p.loader {
 /* Botón de Música Flotante (También Verde) */
 .music-btn-container {
     background-color: var(--color-btn-primary) !important;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.music-btn-container:active {
+    transform: scale(0.9);
 }
 
 /* --- AJUSTE SEPARADORES (Solicitud: 90% ancho) --- */

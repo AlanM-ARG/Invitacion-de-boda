@@ -57,27 +57,29 @@
     }
   </style>
   <div id="app">
-    <div v-show="loading" class="loader-overlay">
-      <div class="loader-content">
-        <div class="welcome-message">
+    <transition name="fade">
+      <div v-show="loading" class="loader-overlay">
+        <div class="loader-content">
           <div class="welcome-message">
-            <p class="loader updock-regular">Querida familia y amigos,</p>
-            <p class="loader updock-regular">
-              Estamos felices de compartir con ustedes este momento especial en nuestras vidas.
-              Su amor y apoyo significan todo para nosotros.
-            </p>
-            <p class="loader updock-regular">
-              Por favor, confirmen su asistencia, los esperamos!.
-            </p>
-            <h1>
-              <strong class="bold-text">Agustin &amp; Bahiana</strong>
+            <div class="welcome-message">
+              <p class="loader updock-regular">Querida familia y amigos,</p>
+              <p class="loader updock-regular">
+                Estamos felices de compartir con ustedes este momento especial en nuestras vidas.
+                Su amor y apoyo significan todo para nosotros.
+              </p>
+              <p class="loader updock-regular">
+                Por favor, confirmen su asistencia, los esperamos!.
+              </p>
+              <h1>
+                <strong class="bold-text">Agustin &amp; Bahiana</strong>
 
-            </h1>
+              </h1>
+            </div>
           </div>
+          <button @click="iniciarMusica()" id="btn-inicio" type="button">Ver Invitacion</button>
         </div>
-        <button @click="iniciarMusica()" id="btn-inicio" type="button">Ver Invitacion</button>
       </div>
-    </div>
+    </transition>
     <img src="/images/image.png" alt="imagen-principal" class="image">
     <!-- <div class="w-layout-blockcontainer container-2 w-container"><img src="/images/wave-haikei.svg"
     class="image-2"> -->
