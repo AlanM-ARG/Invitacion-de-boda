@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         year: 2026,
         month: 3,
         day: 21,
-        hour: 9,
-        minute: 0,
+        hour: 10,
+        minute: 30,
         second: 0
     }, { zone: 'America/Argentina/Buenos_Aires' });
 

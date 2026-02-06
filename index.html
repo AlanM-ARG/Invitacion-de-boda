@@ -22,7 +22,7 @@
 
 <body class="body">
   <div id="app">
-    <!-- <div v-show="loading" class="loader-overlay">
+    <div v-show="loading" class="loader-overlay">
       <div class="loader-content">
         <div class="welcome-message">
           <div class="welcome-message">
@@ -41,30 +41,34 @@
           </div>
         </div>
         <button @click="iniciarMusica()" id="btn-inicio" type="button">Ver Invitacion</button>
-         <img class="image-back" src="./images/fondo.png"> 
+        <img class="image-back" src="images/cement-texture.jpg">
       </div>
-    </div> -->
-    <img src="/images/imagen-principal3.png" alt="imagen-principal" class="image" style="width: 100%; height: auto;">
+    </div>
+    <img src="/images/image.png" alt="imagen-principal" class="image">
     <!-- <div class="w-layout-blockcontainer container-2 w-container"><img src="/images/wave-haikei.svg"
     class="image-2"> -->
     <!-- <h2><strong class="iniciales">B &amp; A</strong></h2> -->
 
-    <h2 class="event-date-hero">21-03-2026</h2>
     <!-- <h4><strong class="bold-text">Bahiana &amp; Agustin</strong></h4> -->
-    <div class="w-layout-hflex comilla1"><img src="/images/cotizacion-2.png" width="19" class="image-3"></div>
+    <!-- <div class="w-layout-hflex comilla1"><img src="/images/cotizacion-2.png" width="19" class="image-3"></div> -->
+    <h1><strong class="bold-text">Agustin &amp; Bahiana</strong></h1>
 
+    <h2 class="event-date-hero">21-03-2026</h2>
     <div style="text-align: center;">
-      <p class="bible-verse">"Por tanto, lo que Dios juntó, no lo separe el hombre."</p>
-      <p class="bible-verse-citation">Mateo 19:6</p>
+      <p class="bible-verse">"UNO SOLO PUEDE SER VENCIDO, PERO DOS PUEDEN
+        RESISTIR. ¡LA CUERDA DE TRES HULOS NO SE ROMPE
+        FACILMENTE!"</p>
+      <p class="bible-verse-citation">Eclesiastés 4:12</p>
     </div>
     <audio ref="audio">
       <source src="./videoplayback.mp3" type="audio/mp3">
       Tu navegador no soporta el elemento de audio.
     </audio>
-    <img :src="isPlaying ? './images/boton-de-pausa.png' : './images/boton-de-play.png'" @click="togglePlayPause"
-      alt="Botón Play/Pausa" width="60" alt="" class="image-4">
-    <div class="w-layout-hflex comilla2"><img src="/images/cotizacion-1.png" loading="lazy" width="19" alt=""
-        class="image-3"></div>
+    <div class="music-btn-container" @click="togglePlayPause" v-show="!loading">
+      <img :src="isPlaying ? './images/boton-de-pausa.png' : './images/boton-de-play.png'" alt="Botón Play/Pausa">
+    </div>
+    <!-- <div class="w-layout-hflex comilla2"><img src="/images/cotizacion-1.png" loading="lazy" width="19" alt=""
+        class="image-3"></div> -->
     <div class="w-layout-hflex flex-block">
       <!--             <div class="scroll-down-arrows" data-w-id="4c78047b-e889-a8ff-e2e9-acc090f2fb88"
                 data-animation-type="lottie" data-src="/images/6702186dc832b5a7d9025350_a24abbbef0e7474ebb9006f5c713ee2f.json" data-loop="1"
@@ -74,7 +78,8 @@
     <div class="w-layout-hflex flex-block-2">
       <img src="./images/separador4.png" class="separador4" style="margin-top: 10% !important;">
     </div>
-    <div class="text-block-5">Próximamente...</div>
+
+    <!-- <div class="text-block-5">Próximamente...</div> -->
     <h6 id="timer" class="heading-3 w-100">00:00:00:00</h6>
     <div class="w-layout-grid grid w-100">
       <div id="w-node-_13ac4f91-c108-6594-ec3b-f7a93d838b91-21fc1c84" class="text-block">Días</div>
@@ -82,61 +87,35 @@
       <div id="w-node-ec085dec-0f17-768d-5ca4-fd00a1e43d2d-21fc1c84" class="text-block-3">Minutos</div>
       <div id="w-node-_1b6b24cc-daf9-e5fb-fce0-09fe7afd26c5-21fc1c84" class="text-block-4">Segundos</div>
     </div>
+
+    <!-- MANTENIENDO STRUCTURA ACTUAL PERO MEJORADA CON CSS GRID -->
+    <!-- El CSS ya se encargó de estilizar #timer y .grid. Solo aseguro las clases aquí -->
+    <h6 id="timer" class="heading-3 w-100"></h6>
   </div>
-  <div class="section-spacer">•</div>
+
   <div class="w-layout-blockcontainer container-3 w-container" style="margin-top: 5%;">
+    <h4 class="heading-4-copy">Civil</h4>
     <div class="w-layout-hflex flex-block-2">
       <img class="img-w-30" src="./images/anillos.png">
     </div>
 
-    <h4 class="heading-4-copy">Civil</h4>
-    <!-- <div class="fecha">Fecha</div> -->
-
-    <div class="event-date"><span class="date">20 MAR</span>|<span class="time">--:--hs</span>
+    <div class="event-date"><span class="date">20 MAR</span>|<span class="time">09:50hs</span>
     </div>
-    <!--       <div class="w-layout-hflex flex-block-2">
-        <button href="#" class="button1" style="--clr: #7808d0">
-          <span class="button__icon-wrapper">
-            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
 
-            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-              class="button__icon-svg button__icon-svg--copy">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
-          </span>
-          Agendar la Fecha
-        </button>
-      </div> -->
-    <!-- <div class="text-block-6">Lugar</div> -->
     <h5 class="place">Registro Civil Florencio Varela</h5>
-    <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center;">
+    <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center; margin-top: 0 !important;">
       <a href="https://maps.app.goo.gl/VMyNBWZZdjiaBsuj7" target="_blank" rel="noopener noreferrer">
         <img src="./images/marcador-de-posicion.png" class="ubicacion"><span class="description m-0"
-          style="text-decoration: underline; color: #000;">Bartolomé Mitre 253</span></a>
+          style="text-decoration: underline; color: #000; font-weight: 400 !important;">Bartolomé Mitre 253</span></a>
     </div>
     <div class="w-layout-hflex flex-block-2">
       <a href="https://maps.app.goo.gl/VMyNBWZZdjiaBsuj7" target="_blank" rel="noopener noreferrer">
-        <button class="button1" style="--clr: #7808d0">
-          <span class="button__icon-wrapper">
-            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
+        <button class="btn-cta">
+          <div class="icon-container">
+            <svg class="icon-arrow" viewBox="0 0 24 24">
+              <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
             </svg>
-
-            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-              class="button__icon-svg button__icon-svg--copy">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
-          </span>
+          </div>
           ¿Como Llegar?
         </button>
       </a>
@@ -144,167 +123,119 @@
     </div>
   </div>
   <div class="w-layout-blockcontainer container-3 w-container">
+
+    <h4 class="heading-4-copy">Ceremonia</h4>
     <div class="w-layout-hflex flex-block-2">
       <img class="img-w-25" src="./images/arco.png">
     </div>
-    <h4 class="heading-4-copy">Ceremonia Religiosa</h4>
     <!-- <div class="fecha">Fecha</div> -->
-    <div class="event-date"><span class="date">21 MAR</span>|<span class="time">--:--hs</span>
+    <div class="event-date"><span class="date">21 MAR</span>|<span class="time">10:30hs</span>
     </div>
-    <!--       <div class="w-layout-hflex flex-block-2">
-        <button href="#" class="button1" style="--clr: #7808d0">
-          <span class="button__icon-wrapper">
-            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
 
-            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-              class="button__icon-svg button__icon-svg--copy">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
-          </span>
-          Agendar la Fecha
-        </button>
-      </div> -->
     <h5 class="place">Iglesia Ministerio Casa de Luz</h5>
-    <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center;">
-      <a href="#" target="_blank" rel="noopener noreferrer">
+    <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center; margin-top: 0 !important;">
+      <a href="https://maps.app.goo.gl/wVSZzbkKKWQpAKTT6" target="_blank" rel="noopener noreferrer">
         <img src="./images/marcador-de-posicion.png" class="ubicacion"><span class="description m-0"
-          style="text-decoration: underline; color: #000;">Calles 1328 y 1387</span></a>
+          style="text-decoration: underline; color: #000; font-weight: 400 !important;">Calles 1328 y 1387</span></a>
     </div>
     <div class="w-layout-hflex flex-block-2">
-      <a href="#" target="_blank" rel="noopener noreferrer">
-        <button class="button1" style="--clr: #7808d0">
-          <span class="button__icon-wrapper">
-            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
+      <a href="https://maps.app.goo.gl/wVSZzbkKKWQpAKTT6" target="_blank" rel="noopener noreferrer">
+        <button class="btn-cta">
+          <div class="icon-container">
+            <svg class="icon-arrow" viewBox="0 0 24 24">
+              <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
             </svg>
-
-            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-              class="button__icon-svg button__icon-svg--copy">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
-          </span>
+          </div>
           ¿Como Llegar?
         </button>
       </a>
     </div>
   </div>
-  <div class="section-spacer">•</div>
-  <div class="w-layout-hflex flex-block-2">
-    <img class="img-w-25" src="./images/pastel-de-boda.png">
-  </div>
-  <h4 class="heading-4-copy">Fiesta</h4>
-  <div class="event-date-column">
-    <span class="date heading-3">21 MAR</span>
-    <span class="time-continuous">A continuación de la ceremonia</span>
-  </div>
-  <h5 class="place">Quinta Las Cuatro Estaciones</h5>
-  <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center;">
-    <a href="#" target="_blank" rel="noopener noreferrer">
-      <img src="./images/marcador-de-posicion.png" class="ubicacion"><span class="description m-0"
-        style="text-decoration: underline; color: #000;">Calle 1120, altura 2292</span></a>
-  </div>
-  <div class="w-layout-hflex flex-block-2">
-    <a href="#" target="_blank" rel="noopener noreferrer">
-      <button class="button1" style="--clr: #7808d0">
-        <span class="button__icon-wrapper">
-          <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-            <path
-              d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-              fill="currentColor"></path>
-          </svg>
 
-          <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-            class="button__icon-svg button__icon-svg--copy">
-            <path
-              d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-              fill="currentColor"></path>
-          </svg>
-        </span>
-        ¿Como Llegar?
-      </button>
-    </a>
-  </div>
-  </div>
-  <div class="section-spacer">•</div>
+
   <div class="w-layout-blockcontainer container-3 w-container">
-    <h4 class="heading-4">Confirmar Asistencia</h4>
-    <h5 class="description">¿Nos acompañas en este día tan especial?</h5>
-    <div class="w-layout-hflex qr"><img src="/images/lista-de-verificacion.png" class="img-w-25">
+    <h4 class="heading-4-copy">Celebracion</h4>
+    <div class="w-layout-hflex flex-block-2">
+      <img class="img-w-25" src="./images/pastel-de-boda.png">
+    </div>
+    <div class="event-date"
+      style="display: flex !important; flex-direction: column !important  ; gap: 0rem !important; align-items: center !important;">
+      <span class="date" style="text-align: center !important; width: 100vw !important; ">21 MAR</span>
+      <h5 class="description d-block" style="font-weight: bold !important;">A continuación de la ceremonia</h5>
+    </div>
+    <h5 class="place">Quinta Hugo</h5>
+    <div class="w-layout-hflex flex-block-2 gap-2" style="align-items: center; margin-top: 0 !important;">
+      <a href="https://maps.app.goo.gl/s7VkTYouTVpqH2haA?g_st=iw" target="_blank" rel="noopener noreferrer">
+        <img src="./images/marcador-de-posicion.png" class="ubicacion"><span class="description m-0"
+          style="text-decoration: underline; color: #000; font-weight: 400 !important;">Calle 1387 969, Florencio
+          Varela</span></a>
     </div>
     <div class="w-layout-hflex flex-block-2">
-      <button @click="formularioAsistencia()" class="button1" style="--clr: #7808d0">
-        <span class="button__icon-wrapper">
-          <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-            <path
-              d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-              fill="currentColor"></path>
-          </svg>
-
-          <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-            class="button__icon-svg button__icon-svg--copy">
-            <path
-              d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-              fill="currentColor"></path>
-          </svg>
-        </span>
-        Confirmar
-      </button>
+      <a href="https://maps.app.goo.gl/s7VkTYouTVpqH2haA?g_st=iw" target="_blank" rel="noopener noreferrer">
+        <button class="btn-cta">
+          <div class="icon-container">
+            <svg class="icon-arrow" viewBox="0 0 24 24">
+              <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+            </svg>
+          </div>
+          ¿Como Llegar?
+        </button>
+      </a>
     </div>
   </div>
-  <div class="section-spacer">•</div>
+
+  <div class="w-layout-blockcontainer container-3 w-container">
+    <h4 class="heading-4">Confirmar Asistencia</h4>
+    <img class="img-w-25" src="./images/lista-de-verificacion.png">
+    <h5 class="description">¿Nos acompañas en este día tan especial?</h5>
+
+    <div class="w-layout-hflex flex-block-2">
+      <a href="https://api.whatsapp.com/send?phone=5491137031784&text=Hola!%20Quiero%20confirmar%20mi%20asistencia%20a%20la%20boda"
+        target="_blank" class="btn-cta">
+        <div class="icon-container">
+          <svg class="icon-arrow" viewBox="0 0 24 24">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+          </svg>
+        </div>
+        Confirmar
+      </a>
+    </div>
+  </div>
+
   <div class="w-layout-blockcontainer container-3 w-container">
     <h4 class="heading-4">Dress Code</h4>
     <div class="w-layout-hflex flex-block-2"><img src="/images/vestido-de-novia.png" class="img-w-30">
     </div>
-    <h5 class="place">Elegante Sport</h5>
-    <h5 class="description" style="margin-top: 10px; font-weight: bold;">🏊 ¡Nota Importante! No olviden traer ropa para
-      la pileta.</h5>
+    <h5 class="place" style="font-weight: 900 !important; font-size: 23px !important;">Elegante Sport</h5>
+    <h5 class="description" style="margin-top: 10px; font-weight: 700 !important;">¡No olviden traer ropa para
+      la pileta!</h5>
   </div>
-  <div class="section-spacer">•</div>
+
   <div class="w-layout-blockcontainer container-3 w-container">
-    <!-- <div class="fecha"></div> -->
     <h4 class="heading-4">Música</h4>
-    <div class="w-layout-hflex flex-block-2"><img src="/images/notas-musicales.png" class="img-w-30">
+    <div class="w-layout-hflex flex-block-2"><img src="/images/notas-musicales2.png" class="img-w-25">
     </div>
     <h5 class="description">¿Cuál es la canción que no debe faltar en la Playlist de la Boda?</h5>
     <div class="w-layout-hflex flex-block-2">
-      <a href="https://www.youtube.com/playlist?list=PLNpIsMkks2wt6X7je1nkfh5pIvS0dtur3&jct=TTO5jOWJpz1fraiVY06nPg"
-        target="_blank" rel="noopener noreferrer">
-        <button class="button1" style="--clr: #7808d0">
-          <span class="button__icon-wrapper">
-            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
-
-            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-              class="button__icon-svg button__icon-svg--copy">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
-          </span>
-          Sugerir Cancion
-        </button>
+      <a href="https://music.youtube.com/playlist?list=PLKfRlW5LoO-kCQuQVGplyvZfHi4Ego75j&jct=0ri_amr9eco0NT4OrSo86g"
+        target="_blank" rel="noopener noreferrer" class="btn-cta">
+        <div class="icon-container">
+          <svg class="icon-arrow" viewBox="0 0 24 24">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+          </svg>
+        </div>
+        Sugerir Cancion
       </a>
 
     </div>
+  </div>
 
 
-    <div class="w-layout-blockcontainer container-3 w-container">
-      <div class="section-spacer">•</div>
+  <!-- <div class="w-layout-blockcontainer container-3 w-container">
+      
       <h4 class="heading-4">Información Importante</h4>
+          <div class="w-layout-hflex flex-block-2"><img src="/images/atencion.png" class="img-w-30">
+    </div>
       <div class="w-layout-hflex flex-block-2">
         <button @click="informacionAdicional()" class="button1" style="--clr: #7808d0">
           <span class="button__icon-wrapper">
@@ -324,78 +255,60 @@
           Ver mas
         </button>
       </div>
-    </div>
-    <div class="section-spacer">•</div>
-    <div class="w-layout-blockcontainer container-3 w-container">
-      <h4 class="heading-4">Regalos</h4>
-      <h5 class="description">Su presencia es súper valiosa y nuestro mejor regalo. Si desean hacernos un presente, nos
-        ayudarían muchísimo a terminar nuestra casita. Pueden hacerlo a través de los siguientes datos bancarios:</h5>
-      <div class="w-layout-hflex flex-block-2">
-        <button @click="regalos()" class="button1" style="--clr: #7808d0">
-          <span class="button__icon-wrapper">
-            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
+    </div> -->
 
-            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-              class="button__icon-svg button__icon-svg--copy">
-              <path
-                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                fill="currentColor"></path>
-            </svg>
-          </span>
-          Ver mas
-        </button>
-      </div>
+  <div class="w-layout-blockcontainer container-3 w-container">
+    <h4 class="heading-4">Regalos</h4>
+    <div class="w-layout-hflex flex-block-2">
+      <img class="img-w-25" src="./images/caja-de-regalo.png">
     </div>
-    <div class="section-spacer">•</div>
-    <div class="w-layout-blockcontainer container-3 w-container">
-      <h4 class="heading-4">Fotos</h4>
-      <h5 class="place">Comparte tus fotos y videos de este hermoso día.</h5>
-      <div class="w-layout-hflex flex-block-2">
-        <a href="https://photos.app.goo.gl/ZEcmZCaX3VXsXP399" target="_blank" rel="noopener noreferrer">
-          <button class="button1" style="--clr: #7808d0">
-            <span class="button__icon-wrapper">
-              <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg"
-                width="10">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-
-              <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg"
-                class="button__icon-svg button__icon-svg--copy">
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"></path>
-              </svg>
-            </span>
-            Subir Fotos
-          </button>
-        </a>
-      </div>
+    <h5 class="description" style="margin-top: 8% !important;">Su presencia es súper valiosa y nuestro mejor regalo. Si
+      desean hacernos un presente, nos
+      ayudarían muchísimo a terminar nuestra casita.</h5>
+    <div class="w-layout-hflex flex-block-2">
+      <button onclick="regalos()" class="btn-cta">
+        <div class="icon-container">
+          <svg class="icon-arrow" viewBox="0 0 24 24">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+          </svg>
+        </div>
+        Ver mas
+      </button>
     </div>
+  </div>
 
+  <div class="w-layout-blockcontainer container-3 w-container">
+    <h4 class="heading-4">Fotos</h4>
+    <div class="w-layout-hflex flex-block-2"><img src="/images/camara.png" class="img-w-25">
+    </div>
+    <h5 class="place" style="margin-top: 8% !important;">Comparte tus fotos y videos de este hermoso día.</h5>
+    <div class="w-layout-hflex flex-block-2">
+      <a href="https://photos.app.goo.gl/tRGmFAbRtoAUcJKG8" target="_blank" rel="noopener noreferrer" class="btn-cta">
+        <div class="icon-container">
+          <svg class="icon-arrow" viewBox="0 0 24 24">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+          </svg>
+        </div>
+        Subir Fotos
+      </a>
+    </div>
   </div>
   <div class="w-layout-hflex flex-block-2">
     <img src="./images/separador4.png" class="separador4">
   </div>
 
-  <div class="w-layout-blockcontainer w-container" style="margin-top: 20%;">
-    <h1><strong class="bold-text">Agustin &amp; Bahiana</strong></h1>
-    <!-- <h2 class="heading-2 firstdate">¡Los esperamos!</h2> -->
-  </div>
-  <div class="w-layout-blockcontainer w-container" style="margin-top: 20%;">
+  <!-- <div class="w-layout-blockcontainer w-container" style="margin-top: 20%;"> -->
+  <!-- <h2 class="heading-2 firstdate">¡Los esperamos!</h2> -->
+  <!-- </div> -->
+  <!-- <div class="w-layout-blockcontainer w-container" style="margin-top: 20%;">
     <section class="footer-dark">
       <div class="container-5"></div>
       <div id="w-node-bb44688b-dc69-2c39-991f-dcd31a274518-21fc1c84" class="footer-block">
         <div class="footer-copyright-center"></div>
       </div>
     </section>
-  </div>
-  </div>
+  </div> <!-- Closing w-layout-blockcontainer -->
+  </div> <!-- Closing #app -->
   <!-- Vue -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <!-- bootstrap -->

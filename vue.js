@@ -1,22 +1,52 @@
 import { db, collection, addDoc, doc, updateDoc, getDocs } from "./firebaseConfig.js";
 const { createApp } = Vue;
-createApp({
+// Definir funciones globalmente primero
+window.formularioAsistencia = async function () {
+    // ... lógica del formulario ...
+    // Necesitamos acceder a `this` si usamos data de Vue, pero aquí SweetAlert crea su propia instancia.
+    // La función original usa `this.generateFormHtml()`.
+    // Para que funcione fuera, necesitamos que generateFormHtml sea accesible o parte de esta lógica.
 
+    // SOLUCIÓN ROBUSTA: Usar la instancia montada si existe, o definir la lógica aquí.
+    // Como la lógica depende de `this.generateFormHtml`, lo mejor es que Vue exponga la instancia.
+    if (window.vueApp) {
+        window.vueApp.formularioAsistencia();
+    } else {
+        console.error("Vue app no está lista");
+    }
+};
+
+window.regalos = function () {
+    if (window.vueApp) {
+        window.vueApp.regalos();
+    }
+};
+
+window.informacionAdicional = function () {
+    if (window.vueApp) {
+        window.vueApp.informacionAdicional();
+    }
+};
+
+
+const app = createApp({
     data() {
         return {
             message: 'Hello Vue!',
             titulo: 'Reproductor de Música con Vue.js',
             currentTime: 0,
             duration: 0,
-            // loading: true, // Inicialmente se muestra el loader
+            loading: true, // Inicialmente se muestra el loader
             audio: null,   // Objeto de audio
             isPlaying: false,
         }
     },
     created() {
-
+        // Asignar esta instancia a window para acceso global
+        window.vueApp = this;
     },
     methods: {
+        // ... methods ...
         async formularioAsistencia() {
             // Función para generar el HTML del formulario
             const { value: formValues } = await Swal.fire({
@@ -294,189 +324,47 @@ createApp({
                 showCloseButton: true,
                 showCancelButton: false,
                 showConfirmButton: false,
-                html: this.regaloshtml(),
-                didOpen: () => {
-                    // Inicializa una instancia de Vue en el modal de SweetAlert
-                    const modalApp = Vue.createApp({
-                        data() {
-                            return {
-                                db: null,
-                                regalos: []
-                            };
-                        },
-                        async created() {
-                            await this.initFirebase();
-                            await this.cargarRegalos();
-                        },
-                        methods: {
-                            initFirebase() {
-                                this.db = db;  // Asigna Firestore a `this.db`
-
-                            },
-                            // Cargar la lista de regalos de Firestore y ordenar
-                            async cargarRegalos() {
-                                const querySnapshot = await getDocs(collection(db, "regalos"));
-                                this.regalos = querySnapshot.docs
-                                    .map(doc => ({ id: doc.id, ...doc.data() }))
-                                this.regalos.sort((a, b) => {
-                                    // Primero ordenar por estado (reservados al final)
-                                    if (a.estado !== b.estado) {
-                                        return a.estado - b.estado;
-                                    }
-                                    // Luego, ordenar alfabéticamente por nombre
-                                    return a.nombre.localeCompare(b.nombre);
-                                });
-                            },
-
-                            // Reservar un regalo en Firestore usando SweetAlert2
-                            async reservarRegalo(id) {
-                                // Pedir nombre o familia usando SweetAlert
-                                const { value: invitado } = await Swal.fire({
-                                    title: 'Reserva de Regalo',
-                                    input: 'text',
-                                    inputLabel: 'Ingrese su nombre o familia para confirmar la reserva',
-                                    customClass: {
-                                        inputLabel: 'swal2-centered-label'
-                                    },
-                                    inputPlaceholder: 'Nombre o Familia',
-                                    showCancelButton: true,
-                                    confirmButtonText: 'Reservar',
-                                    cancelButtonText: 'Cancelar',
-                                    inputValidator: (value) => {
-                                        if (!value) {
-                                            return 'Debe ingresar un nombre o familia para continuar';
-                                        }
-                                    }
-                                });
-
-                                // Si el usuario cancela o no ingresa nada, no se hace nada
-                                if (!invitado) return;
-
-                                try {
-                                    // Acceder al documento específico en Firestore
-                                    const regaloRef = doc(db, "regalos", id);
-
-                                    // Actualizar el campo `estado` y `invitado` en Firestore
-                                    await updateDoc(regaloRef, {
-                                        estado: true,
-                                        invitado: invitado
-                                    });
-
-                                    // Actualizar el estado local y ordenar la lista
-                                    this.regalos = this.regalos
-                                        .map(regalo => (regalo.id === id ? { ...regalo, estado: true, invitado } : regalo))
-                                        .sort((a, b) => a.estado - b.estado);
-
-                                    Swal.fire('Reservado!', 'El regalo ha sido reservado con éxito.', 'success');
-                                } catch (error) {
-                                    console.error("Error al reservar el regalo:", error);
-                                    Swal.fire('Error', 'Hubo un problema al reservar el regalo. Intente nuevamente.', 'error');
-                                }
-                            },
-                            async agregarRegaloPersonalizado() {
-                                const { value: formValues } = await Swal.fire({
-                                    title: '¿Quieres regalarnos algo especial?',
-                                    html:
-                                        '<label style="text-align:center">Nombre del regalo:</label>' +
-                                        '<input id="regalo" class="swal2-input m-0 w-100" placeholder="Ej. Cena romántica, viaje, etc.">' +
-                                        '<label style="text-align:center">Tu nombre o familia:</label>' +
-                                        '<input id="invitado" class="swal2-input m-0 w-100" placeholder="Ej. Familia Pérez">',
-                                    focusConfirm: false,
-                                    showCancelButton: true,
-                                    confirmButtonText: 'Agregar',
-                                    cancelButtonText: 'Cancelar',
-                                    preConfirm: () => {
-                                        const regaloNombre = document.getElementById('regalo').value;
-                                        const invitadoNombre = document.getElementById('invitado').value;
-                                        if (!regaloNombre || !invitadoNombre) {
-                                            Swal.showValidationMessage('Debes completar ambos campos');
-                                            return;
-                                        }
-                                        return { regaloNombre, invitadoNombre };
-                                    }
-                                });
-
-                                if (!formValues) return;
-
-                                try {
-                                    // Crear el nuevo regalo con el nombre del invitado
-                                    const nuevoRegalo = {
-                                        nombre: formValues.regaloNombre,
-                                        descripcion: 'Regalo personalizado',
-                                        estado: true, // Este regalo ya está reservado por el invitado
-                                        invitado: formValues.invitadoNombre
-                                    };
-                                    const docRef = await addDoc(collection(db, "regalos"), nuevoRegalo);
-
-                                    // Actualizar la lista local
-                                    this.regalos.push({ id: docRef.id, ...nuevoRegalo });
-                                    this.regalos.sort((a, b) => a.estado - b.estado);
-
-                                    Swal.fire('Agregado!', 'Tu regalo ha sido agregado y reservado con éxito.', 'success');
-                                } catch (error) {
-                                    console.error("Error al agregar el regalo:", error);
-                                    Swal.fire('Error', 'Hubo un problema al agregar el regalo. Intente nuevamente.', 'error');
-                                }
-                            }
-                        }
-                    });
-                    modalApp.mount('#dynamic-alert');
-                },
+                html: this.regaloshtml()
             })
         },
         regaloshtml() {
-
             return `<div id="dynamic-alert">
             <h4 class="heading-4">Regalos</h4>
 
-<p class="place" style="text-align:start !important; margin-top:15%;">
-Para ayudarnos a construir nuestro hogar juntos. Si desean hacerlo, aquí está nuestros datos:
-</p>
-<p>Alias:<br/> 
-<b>alan.morua</b></p>
-    <p>CVU: <b>0000003100078167484238</b></p>
-    <p class="place" style="text-align:start !important; margin-top:15%;">
-Si deseas hacernos un regalo especial abre la lista de regalos:
-</p>
-  <button id="bottone5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Abrir lista de regalos
-   </button>
-</p>
-<div class="collapse" id="collapseExample">
-  <div class="d-flex flex-column gap-1" >
-    <h2>Lista de Regalos</h2>
-    <div class="card w-100" v-for="regalo in regalos" :key="regalo.id">
-  <div class="card-body">
-    <h5 class="card-title" :class="{ tachado: regalo.estado }">{{ regalo.nombre }}</h5>
-    <p class="card-text" :class="{ tachado: regalo.estado }">{{ regalo.descripcion }}</p>
-    <button id="bottone5" v-if="!regalo.estado" @click="reservarRegalo(regalo.id)" >Reservar</button>
-        <button id="bottone5" v-else disabled>Reservado</button>
-  </div>
-</div>
-<button id="bottone5" @click="agregarRegaloPersonalizado">¿Quieres regalarnos algo que no está en la lista? Hazlo saber</button>
-</div>
+            <p class="place" style="text-align:start !important; margin-top:15%;">
+            Pueden hacerlo a través de los siguientes datos bancarios:
+            </p>
+            
+            <div style="text-align: center; margin-bottom: 20px;">
+                <p><strong>CBU:</strong> <span style="font-style: italic;">4530000800016421855815</span></p>
+                <p><strong>Alias:</strong> <span style="font-style: italic;">CASORIOBYA</span></p>
+                <p><strong>Titular:</strong> <span style="font-style: italic;">Bahiana Decoud (Naranja X)</span></p>
+            </div>
 
-      
-
-</div>
-
-    </div>
-    
-  </div>
-  </div>`
+            <div class="d-flex flex-column gap-1">
+                <h2 style="font-size: 1.5rem; margin-bottom: 15px;">Lista de Regalos</h2>
+                <ul style="text-align: left; margin-left: 20px;">
+                    <li>Sábanas</li>
+                    <li>Platos</li>
+                    <li>Cubiertos</li>
+                    <li>Ollas</li>
+                     <li>Cortinas</li>
+                </ul>
+            </div>
+        </div>`
         },
-        // iniciarMusica() {
-        //     this.audio = this.$refs.audio;
-        //     this.audio.play()
-        //         .then(() => {
-        //             this.isPlaying = true;
-        //             this.loading = false;
-        //         })
-        //         .catch((error) => {
-        //             console.error("Error al reproducir la música:", error);
-        //             this.loading = false;
-        //         });
-        // }
+        iniciarMusica() {
+            this.audio = this.$refs.audio;
+            this.audio.play()
+                .then(() => {
+                    this.isPlaying = true;
+                    this.loading = false;
+                })
+                .catch((error) => {
+                    console.error("Error al reproducir la música:", error);
+                    this.loading = false;
+                });
+        }
     },
     mounted() {
         this.audio = this.$refs.audio;

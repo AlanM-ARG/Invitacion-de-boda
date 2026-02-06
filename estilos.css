@@ -6,7 +6,7 @@
     --color-text-main: #333333;
     /* Alias para compatibilidad */
 
-    --color-accent-green: #588157;
+    --color-accent-green: #90a78b !important;
     /* Iconos, Ramas, Texto secundario */
     --color-cta-terracotta: #D5897A;
     /* Botones, Nombres, Timer */
@@ -40,6 +40,46 @@
 html {
     color-scheme: light !important;
     /* Fuerza el esquema de color claro */
+}
+
+body {
+    /* Mantenemos lo básico del contenedor */
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+    /* Necesario para organizar las capas */
+
+    /* Color de fondo base (por si la imagen tarda en cargar o es muy transparente) */
+    background-color: #FAF9F6;
+}
+
+/* Creamos una capa virtual "detrás" del contenido solo para la imagen */
+body::before {
+    content: "";
+
+    /* AQUÍ MUEVES TODAS LAS PROPIEDADES DE LA IMAGEN */
+    background-image: url('images/cement-texture.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+
+    /* Hacemos que esta capa ocupe toda la pantalla y se quede fija */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* La mandamos al fondo, detrás del texto */
+    z-index: -1;
+
+    /* --- AQUÍ CONTROLAS LA OPACIDAD --- */
+    opacity: 0.4;
+    /* 1.0 = Imagen original (totalmente visible)
+       0.5 = Mitad transparente
+       0.1 = Muy suave
+    */
 }
 
 @media screen and (min-width: 320px) {
@@ -385,12 +425,18 @@ html {
 
     .image {
         box-sizing: border-box;
-        object-fit: fill;
+        object-fit: contain;
+        /* Mejor que fill para no deformar */
         object-position: 50% 50%;
         padding-left: 0;
         padding-right: 0;
         overflow: clip;
-        height: 100%;
+        width: 100% !important;
+        /* Forzar ancho completo */
+        height: auto !important;
+        /* Altura automática */
+        max-height: 90vh;
+        /* Límite razonable para pantallas grandes */
     }
 
     body {
@@ -424,7 +470,7 @@ html {
     }
 
     .bold-text {
-        color: var(--color-accent-terracotta);
+        color: #333333;
         text-align: center;
         justify-content: space-between;
         align-items: center;
@@ -438,7 +484,7 @@ html {
     }
 
     .iniciales {
-        color: var(--color-accent-terracotta);
+        color: #333333;
         text-align: center;
         justify-content: space-between;
         align-items: center;
@@ -493,7 +539,7 @@ html {
     }
 
     .heading-3 {
-        color: var(--color-cta-terracotta);
+        color: #333333;
         text-align: center;
         margin-top: 0%;
         margin-bottom: 0;
@@ -589,7 +635,7 @@ html {
     .text-block-2,
     .text-block-3,
     .text-block-4 {
-        color: var(--color-cta-terracotta);
+        color: #333333;
         text-align: center;
         font-family: Oswald, sans-serif;
         margin-bottom: 0%;
@@ -681,6 +727,51 @@ html {
         overflow: visible;
     }
 
+    /* --- BOTÓN DE MÚSICA FLOTANTE (FIX) --- */
+
+    .music-btn-container {
+        position: fixed;
+        bottom: 5%;
+        /* Distancia desde abajo */
+        right: 5%;
+        /* Distancia desde la derecha */
+        z-index: 9999;
+        /* Asegura que flote sobre todo */
+
+        width: 60px;
+        /* Tamaño del círculo */
+        height: 60px;
+
+        border-radius: 50%;
+        /* Lo hace redondo */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        /* Sombra para que destaque */
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .music-btn-container:hover {
+        transform: scale(1.1);
+        /* Efecto zoom al pasar el mouse */
+    }
+
+    /* Estilo para el ICONO dentro del botón */
+    .music-btn-container img {
+        width: 60px !important;
+        /* Tamaño del icono (play/pause) */
+        height: auto !important;
+        margin: 0 !important;
+        /* Quitamos márgenes extraños */
+
+
+        /* Si tus iconos ya son blancos de origen, borra la línea de 'filter' de arriba */
+    }
+
     .scroll-down-arrows {
         width: 50%;
         height: 50%;
@@ -742,7 +833,7 @@ html {
         font-family: Exo, sans-serif;
         font-weight: 500;
         font-size: 5vw;
-        margin-top: 8%;
+        margin-top: 10% !important;
     }
 
     .event-date {
@@ -759,7 +850,7 @@ html {
 
     .date {
         font-size: 7vw;
-        width: 18vw;
+        width: 100vw !important;
         /* Resalta la fecha */
     }
 
@@ -1112,8 +1203,9 @@ html {
         left: 0;
         width: 100vw;
         height: 100vh;
-        opacity: .08;
+        opacity: 0.4;
         z-index: -1;
+        object-fit: cover;
     }
 
     .separador {
@@ -1137,7 +1229,10 @@ html {
     }
 
     .loader {
-        font-size: 8vw;
+        font-family: "Updock", serif !important;
+        font-size: clamp(2rem, 10vw, 3.5rem);
+        line-height: 1.2;
+        padding: 0 1rem;
     }
 
     .img-w-30 {
@@ -1150,20 +1245,6 @@ html {
 
     .ubicacion {
         width: 5vw;
-    }
-
-    /* Nuevos estilos Boho Elegante */
-    .event-date-hero {
-        font-family: 'Playfair Display', serif;
-        font-size: 2.5rem;
-        /* Hácelo grande */
-        font-weight: 600;
-        color: var(--color-accent-green);
-        /* O usa el terracota si prefieres */
-        margin-bottom: 1rem;
-        letter-spacing: 1px;
-        text-align: center;
-        /* Un poco de aire entre números queda elegante */
     }
 
     .bible-verse {
@@ -1197,7 +1278,7 @@ html {
 @media screen and (min-width: 426px) {
 
     .loader {
-        font-size: 7vw;
+        font-size: clamp(2.5rem, 8vw, 4rem);
         margin-top: 8%;
     }
 
@@ -1219,7 +1300,7 @@ html {
 
 @media screen and (min-width: 560px) {
     .loader {
-        font-size: 6vw;
+        font-size: clamp(3rem, 6vw, 5rem);
         margin-top: 0%;
     }
 
@@ -1232,32 +1313,56 @@ html {
     }
 }
 
-/* TAREA 2: Iconos */
-.icon-section {
-    stroke: #588157;
-    stroke-width: 1.5px;
-    width: 50px;
-    height: 50px;
-    margin-bottom: 1rem;
+/* Reduced padding to make image and content larger */
+body {
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-main);
+    padding-top: 2rem;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow: visible;
+    padding-bottom: 6rem !important;
 }
 
-/* Asegurar que los SVGs de botones también usen el estilo si se requiere, 
-       aunque la clase icon-section es para usarse directamente o en iconos nuevos.
-       Forzamos el cambio en los SVGs existentes */
-.button__icon-svg path,
-.button__icon-svg--copy path {
-    stroke: #588157;
-    stroke-width: 1.5px;
-    fill: transparent;
-    /* "Outline" style */
+/* ... existing styles ... */
+
+/* TAREA 1: AUMENTO DE LEGIBILIDAD (Cuerpo de Texto) */
+/* Aplica esto a los párrafos de detalles, direcciones y notas */
+p,
+.description,
+.place,
+.address-text,
+.section-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem !important;
+    /* Increased from 1rem */
+    /* Base sólida legible para móvil */
+    line-height: 1.5;
+    color: #333333;
+    /* Buen contraste */
+    font-weight: 400 !important;
+    margin-top: var(--space-sm);
 }
 
-/* TAREA 3: Tipografía y Jerarquía */
-#timer {
-    font-family: 'Playfair Display', serif;
-    /* Coincidir con la elegancia */
-    font-weight: 600;
+/* ... */
+
+/* .bible-verse override if needed */
+.bible-verse {
+    font-size: clamp(1.4rem, 5vw, 2rem) !important;
+    /* Increased significantly */
+    color: #000 !important;
+    line-height: 1.3;
+}
+
+.bible-verse-citation {
+    font-size: clamp(1.4rem, 5vw, 2rem) !important;
+    font-style: normal;
+    font-size: 1.2rem !important;
+    color: #000 !important;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
     letter-spacing: 2px;
+    font-weight: bolder !important;
 }
 
 .heading-4,
@@ -1274,29 +1379,266 @@ html {
     margin-bottom: 1rem;
 }
 
-/* Tarea 4: Fiesta Alignment */
-.event-date-column {
+/* Estilo de cada bloque del contador (Dias, Horas...) */
+.timer-block-layout {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* TAREA 1: Ajuste de los labels debajo del timer */
+/* These rules are now replaced by .timer-label */
+/*
+.text-block,
+.text-block-2,
+.text-block-3,
+.text-block-4 {
+    color: var(--color-accent-green);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem !important;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 5px;
+}
+*/
+
+/* TAREA 3: BALANCE DE COLOR */
+
+/* Botón Audio Flotante */
+.image-4 {
+    background-color: var(--color-cta-terracota);
+    /* Fondo Terracota */
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Asegurar que el icono sea blanco lo haremos con filtro si es necesario, pero es una imagen PNG.
+           Si es PNG negro, invirtamos colores o usemos brillo. */
+    filter: brightness(0) invert(1);
+}
+
+/* Iconos SVG (Mantener oscuros) */
+.icon-section-svg {
+    stroke: #333333;
+}
+
+/* Botones CTA (Terracota) */
+.btn-cta {
+    background-color: var(--color-cta-terracota) !important;
+    color: #FFFFFF !important;
+    border-radius: 50px;
+    padding: 12px 24px;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    text-decoration: none !important;
+    border: none;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.btn-cta:hover {
+    transform: scale(1.05);
+}
+
+.btn-cta .icon-container {
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    margin-top: 1rem;
 }
 
-.time-continuous {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-    color: #333;
-    text-align: center;
+.btn-cta .icon-arrow {
+    color: var(--color-cta-terracota);
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
 }
 
-/* Spacing utility for removed separators */
+/* Utility */
 .section-spacer {
-    margin-bottom: 4rem;
-    /* Espacio en blanco */
+    margin-bottom: var(--space-lg);
     text-align: center;
-    color: var(--color-cta-terracotta);
+    color: var(--color-cta-terracota);
     font-size: 1.5rem;
 }
+
+/* --- REVERSION DE COLORES (Solicitud Cliente) --- */
+
+/* Variable de Color Principal para Botones */
+:root {
+    --color-btn-primary: #90a78b;
+    /* Verde Oliva Ajustado (Más suave) */
+    --color-text-body: #333333;
+    /* Negro Suave */
+}
+
+/* Estilos de Texto */
+p,
+.description,
+.place,
+.address-block,
+.event-details,
+.address-text,
+.event-date {
+    color: var(--color-text-body) !important;
+}
+
+/* Estilos de Botones */
+.btn-cta,
+.button1,
+#btn-inicio,
+#bottone5 {
+    background-color: var(--color-btn-primary) !important;
+    color: #FFFFFF !important;
+}
+
+/* Ajuste texto de carga especifico */
+p.loader {
+    font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
+    line-height: 1.3 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+
+/* Flechas dentro de los botones (si son SVG) */
+.btn-cta .icon-arrow {
+    fill: var(--color-btn-primary);
+    /* La flecha toma el color del texto o del botón según prefieras */
+    color: var(--color-btn-primary);
+}
+
+/* Botón de Música Flotante (También Verde) */
+.music-btn-container {
+    background-color: var(--color-btn-primary) !important;
+}
+
+/* --- AJUSTE SEPARADORES (Solicitud: 90% ancho) --- */
+.separador4 {
+    width: 95% !important;
+    max-width: 95% !important;
+    /* Asegura que no se limite por max-width anteriores */
+    height: auto !important;
+    /* Mantiene proporción */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* --- AJUSTE FECHA HERO (Grande, Negra, Nueva Fuente) --- */
+.event-date-hero {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: #333333 !important;
+    text-align: center;
+    font-size: clamp(3.5rem, 15vw, 5rem) !important;
+    font-weight: 600 !important;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    line-height: 1;
+
+}
+
+/* ==========================================================================
+   TAREA: REVERTIR CAMBIOS VISUALES Y AUMENTAR LOGO
+   ========================================================================== */
+
+
+
+/* Hide new timer blocks if they exist in HTML (though I reverted JS) */
+.timer-block,
+.timer-label,
+.timer-number {
+    display: none !important;
+}
+
+/* 2. AUMENTAR LOGO PRINCIPAL (H1) */
+.bold-text,
+.iniciales {
+    /* "Quisiera más grande" */
+    font-size: clamp(4rem, 18vw, 7rem) !important;
+    color: #333333;
+    line-height: 1.1;
+    margin-top: 5vh;
+}
+
+/* 3. REVERTIR TÍTULOS DE SECCIÓN (Ceremonia, etc.) */
+.heading-4,
+.heading-4-copy {
+    /* Reverting to original styles: Palatino, #4e6350 */
+    font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+    font-size: 9vw;
+    font-weight: 700;
+    line-height: 100%;
+    color: #4e6350 !important;
+    /* Original olive/dark green */
+    margin-top: 25%;
+    margin-bottom: 0;
+}
+
+/* 4. REVERTIR FECHAS */
+.event-date {
+    /* Reverting to original: 7vw, dark grey */
+    font-size: 7vw !important;
+    font-family: Oswald, sans-serif !important;
+    color: #333 !important;
+
+    /* Reset flex alignment used in the previous "fancy" version if needed, 
+       but original code had flex/center too. checking lines 833.. */
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: 600;
+    margin-top: 8%;
+    gap: normal;
+}
+
+
+/* 5. ARREGLO LOGO PIE DE PÁGINA (No romper renglón) */
+.bold-text {
+    white-space: nowrap !important;
+    /* Forzar una sola línea */
+    font-size: 13vw !important;
+    /* ELASTICO: Ocupará siempre la pantalla */
+    display: block !important;
+    text-align: center;
+    width: 100%;
+}
+
+/* 6. CENTRADO DE IMAGEN CONFIRMACIÓN */
+.container-3 img.img-w-25 {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* 7. FECHA EN UNA SOLA LÍNEA (13 MAR) */
+.event-date {
+    display: flex !important;
+    flex-direction: row !important;
+    /* Forzar fila */
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    /* No permitir saltos */
+    gap: 10px;
+    /* Espacio entre fecha y hora */
+}
+
+.event-date .date {
+    white-space: nowrap !important;
+    display: inline-block !important;
+    width: auto !important;
+    /* Quitar ancho fijo que forzaba el salto */
+}
+
+/* 8. VERSÍCULO MÁS NEGRITA */
+.bible-verse {
+    font-weight: bold !important;
+    /* Negrita fuerte */
+    color: #000 !important;
+    /* Un poco más oscuro para legibilidad si se desea, o mantener */
 }
