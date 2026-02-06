@@ -367,6 +367,12 @@ const app = createApp({
         }
     },
     mounted() {
+        // Ocultar pre-loader al montar Vue
+        const preLoader = document.getElementById('pre-loader');
+        if (preLoader) {
+            preLoader.style.display = 'none';
+        }
+
         this.audio = this.$refs.audio;
 
         if (this.audio) {

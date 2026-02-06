@@ -17,10 +17,29 @@
   <link rel="shortcut icon" href="./images/invitacion-de-boda.png" type="image/x-icon">
   <meta name="color-scheme" content="light">
   <title>Agustin & Bahiana</title>
-
+  <link rel="preload" as="image" href="images/cement-texture.jpg">
 </head>
 
 <body class="body">
+  <div id="pre-loader"
+    style="position:fixed; top:0; left:0; width:100%; height:100%; background:#FAF9F6; z-index:999999; display:flex; justify-content:center; align-items:center;">
+    <div style="font-size:3rem; animation:pulse 1s infinite;">❤️</div>
+  </div>
+  <style>
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
   <div id="app">
     <div v-show="loading" class="loader-overlay">
       <div class="loader-content">
@@ -41,7 +60,6 @@
           </div>
         </div>
         <button @click="iniciarMusica()" id="btn-inicio" type="button">Ver Invitacion</button>
-        <img class="image-back" src="images/cement-texture.jpg">
       </div>
     </div>
     <img src="/images/image.png" alt="imagen-principal" class="image">
