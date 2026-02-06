@@ -51,6 +51,8 @@ body {
 
     /* Color de fondo base (por si la imagen tarda en cargar o es muy transparente) */
     background-color: #FAF9F6;
+    overflow-x: hidden;
+    /* Evita desplazamiento horizontal indeseado */
 }
 
 /* Creamos una capa virtual "detrás" del contenido solo para la imagen */
@@ -1237,10 +1239,16 @@ body::before {
     }
 
     .loader {
-        font-family: "Updock", serif !important;
+        font-family: 'Cormorant Garamond', serif !important;
         font-size: clamp(2rem, 10vw, 3.5rem);
         line-height: 1.2;
         padding: 0 1rem;
+        font-weight: 700 !important;
+        font-style: italic;
+        /* Igual que el versículo */
+        /* Texto más grueso */
+        text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+        /* Truco para engrosar más si la fuente es fina */
     }
 
     .img-w-30 {
@@ -1509,6 +1517,8 @@ p.loader {
     font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
     line-height: 1.3 !important;
     margin-bottom: 1.5rem !important;
+    font-weight: 700 !important;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
 }
 
 
