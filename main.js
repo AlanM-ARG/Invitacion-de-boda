@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const targetDate = DateTime.fromObject({
         year: 2026,
         month: 3,
-        day: 21,
+        day: 22,
         hour: 10,
         minute: 30,
         second: 0
